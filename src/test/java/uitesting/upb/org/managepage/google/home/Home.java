@@ -29,4 +29,5 @@ public class Home extends BasePage {
     public void searchTextAndClickSearchButton(String text){
         searchText(text).clickSearchButton();
     }
+
 }
