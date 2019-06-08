@@ -17,36 +17,18 @@ public class MainPage extends BasePage {
         super();
     }
 
-    public void navigateToEarthImagery() {
-        clickNasaAPIListingButton();
-        waitForSeconds(2);
-        
+    public NasaApiListing navigateToNasaApiListing() {
         clickNasaAPIListingButton();
         waitForSeconds(2);
 
-        clickEarthButton();
+        clickNasaAPIListingButton();
         waitForSeconds(2);
 
-        clickImageryButton();
-        waitForSeconds(2);
+        return new NasaApiListing();
     }
 
     private void clickNasaAPIListingButton() {
         Events.click(nasaAPIListingButton);
-    }
-
-    private void clickEarthButton(){
-        WebElement earthButton = webDriver.findElement(By.id("tocify-header8"));
-        Events.click(earthButton);
-    }
-
-    private void clickImageryButton() {
-        WebElement imageryButton = webDriver.findElement(By.xpath("//a[contains(text(),'Imagery')]"));
-        Events.click(imageryButton);
-
-        String url = "URL: " + webDriver.getCurrentUrl();
-        System.out.println(url);
-        JOptionPane.showMessageDialog(null, url);
     }
 
 }

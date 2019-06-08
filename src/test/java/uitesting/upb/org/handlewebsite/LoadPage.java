@@ -15,7 +15,7 @@ public class LoadPage {
     }
 
     public static void main(String[] args) {
-        loadNasaMainPage().navigateToEarthImagery();
+        loadNasaMainPage().navigateToNasaApiListing().navigateToEarthImagery();
     }
 
 }
