@@ -1,28 +1,21 @@
 package uitesting.upb.org.handlewebsite;
 
 import uitesting.upb.org.managefile.PropertyAccesor;
-import uitesting.upb.org.managepage.google.home.Home;
-import uitesting.upb.org.managepage.wallet.AccountManager;
+import uitesting.upb.org.managepage.nasa.MainPage;
 import uitesting.upb.org.webdrivermanager.DriverManager;
-
-import java.sql.Driver;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @autor Marcelo Garay
  */
 public class LoadPage {
 
-    public static AccountManager loadWalletMainPage(){
+    public static MainPage loadNasaMainPage(){
         DriverManager.getInstance().getWebDriver().navigate().to(PropertyAccesor.getInstance().getBaseURL());
-        return new AccountManager();
+        return new MainPage();
     }
 
     public static void main(String[] args) {
-        AccountManager accountManager = loadWalletMainPage();
-
-        accountManager.createAccount();
-        accountManager.selectAccount();
+        loadNasaMainPage().navigateToEarthImagery();
     }
 
 }
