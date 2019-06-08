@@ -18,10 +18,11 @@ public class MainPage extends BasePage {
     }
 
     public void navigateToEarthImagery() {
-        for(int i = 0; i < 2; i++){
-            clickNasaAPIListingButton();
-            waitForSeconds(2);
-        }
+        clickNasaAPIListingButton();
+        waitForSeconds(2);
+        
+        clickNasaAPIListingButton();
+        waitForSeconds(2);
 
         clickEarthButton();
         waitForSeconds(2);
@@ -43,7 +44,9 @@ public class MainPage extends BasePage {
         WebElement imageryButton = webDriver.findElement(By.xpath("//a[contains(text(),'Imagery')]"));
         Events.click(imageryButton);
 
-        JOptionPane.showMessageDialog(null, "URL: " + webDriver.getCurrentUrl());
+        String url = "URL: " + webDriver.getCurrentUrl();
+        System.out.println(url);
+        JOptionPane.showMessageDialog(null, url);
     }
 
 }
