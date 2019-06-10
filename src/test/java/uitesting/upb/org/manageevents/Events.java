@@ -21,4 +21,8 @@ public class Events {
         searchTextField.sendKeys(text);
     }
 
+    public static boolean isVisibleWebElement(WebElement webElement) {
+        return webElement.isDisplayed();
+    }
+
 }

@@ -7,7 +7,9 @@ import uitesting.upb.org.managefile.PropertyAccesor;
  * @autor Marcelo Garay
  */
 public class DriverManager {
+
     private WebDriver webDriver;
+
     private static DriverManager ourInstance = new DriverManager();
 
     public static DriverManager getInstance() {
