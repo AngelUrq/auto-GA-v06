@@ -34,6 +34,12 @@ public class AccountManager extends BasePage {
         waitForSeconds(2);
     }
 
+    public void fillField(String accountName) {
+        Events.fillField(accountNameInput, accountName);
+
+        waitForSeconds(2);
+    }
+
     public void clickAddAccountButton() {
         Events.click(addAccountButton);
 

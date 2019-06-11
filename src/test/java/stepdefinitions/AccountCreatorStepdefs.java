@@ -20,6 +20,11 @@ public class AccountCreatorStepdefs {
         accountCreator.fillField();
     }
 
+    @And("^fill \"([^\"]*)\" account name input$")
+    public void fillAccountNameInput(String accountName) {
+        accountCreator.fillField(accountName);
+    }
+
     @Then("^click create button$")
     public void clickCreateButton() {
         accountCreator.clickAddAccountButton();

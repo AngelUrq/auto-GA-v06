@@ -47,10 +47,4 @@ public class PropertyAccesor {
         return prop.getProperty("Browser");
     }
 
-    public static void main(String[] args) {
-        System.out.println(PropertyAccesor.getInstance().getBaseURL());
-        System.out.println(PropertyAccesor.getInstance().getUsername());
-        System.out.println(PropertyAccesor.getInstance().getPassword());
-    }
-
 }
