@@ -1,8 +1,8 @@
-package uitesting.upb.org.webdrivermanager;
+package automation.project.webdrivermanager;
 
+import automation.project.manageevents.Events;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import uitesting.upb.org.manageevents.Events;
 
 import java.util.HashMap;
 import java.util.Map;

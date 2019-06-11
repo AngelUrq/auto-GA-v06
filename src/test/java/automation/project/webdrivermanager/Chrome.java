@@ -1,4 +1,4 @@
-package uitesting.upb.org.webdrivermanager;
+package automation.project.webdrivermanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

@@ -4,8 +4,8 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.testng.Assert;
-import uitesting.upb.org.handlewebsite.LoadPage;
-import uitesting.upb.org.managepage.wallet.AccountManager;
+import automation.project.handlewebsite.LoadPage;
+import automation.project.managepage.wallet.AccountManager;
 
 public class AccountListStepdefs {
 

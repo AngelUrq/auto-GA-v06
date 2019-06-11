@@ -1,8 +1,8 @@
-package uitesting.upb.org.manageevents;
+package automation.project.manageevents;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import uitesting.upb.org.webdrivermanager.DriverManager;
+import automation.project.webdrivermanager.DriverManager;
 
 /**
  * @autor Marcelo Garay

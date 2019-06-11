@@ -1,4 +1,4 @@
-package uitesting.upb.org.managefile;
+package automation.project.managefile;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,11 +9,11 @@ import java.util.Properties;
 /**
  * @autor Marcelo Garay
  */
-public class PropertyAccesor {
-    private static PropertyAccesor propertyAccesor;
+public class PropertyAccessor {
+    private static PropertyAccessor propertyAccessor;
     private Properties prop;
 
-    private PropertyAccesor() {
+    private PropertyAccessor() {
         try (InputStream input = new FileInputStream("gradle.properties")) {
             prop = new Properties();
             prop.load(input);
@@ -24,11 +24,11 @@ public class PropertyAccesor {
         }
     }
 
-    public static PropertyAccesor getInstance(){
-        if(propertyAccesor == null){
-            propertyAccesor = new PropertyAccesor();
+    public static PropertyAccessor getInstance(){
+        if(propertyAccessor == null){
+            propertyAccessor = new PropertyAccessor();
         }
-        return propertyAccesor;
+        return propertyAccessor;
     }
 
     public String getBaseURL(){

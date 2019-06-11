@@ -1,10 +1,10 @@
-package uitesting.upb.org.managepage.wallet;
+package automation.project.managepage.wallet;
 
+import automation.project.manageevents.Events;
+import automation.project.managepage.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import uitesting.upb.org.manageevents.Events;
-import uitesting.upb.org.managepage.BasePage;
 
 public class AccountManager extends BasePage {
 

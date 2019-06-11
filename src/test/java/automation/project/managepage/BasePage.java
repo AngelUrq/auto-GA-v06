@@ -1,11 +1,8 @@
-package uitesting.upb.org.managepage;
+package automation.project.managepage;
 
+import automation.project.webdrivermanager.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import uitesting.upb.org.webdrivermanager.DriverManager;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * @autor Marcelo Garay

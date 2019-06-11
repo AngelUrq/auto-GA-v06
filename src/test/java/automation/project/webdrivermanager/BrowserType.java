@@ -1,4 +1,4 @@
-package uitesting.upb.org.webdrivermanager;
+package automation.project.webdrivermanager;
 
 /**
  * @autor Marcelo Garay
