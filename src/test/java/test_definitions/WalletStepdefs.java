@@ -135,4 +135,34 @@ public class WalletStepdefs {
     public void clickTransferButtonOnTransferPage() {
         accountManager.clickTransferTransactionButton();
     }
+
+    @And("^click 'Report' button$")
+    public void clickReportButton() {
+        accountManager.clickReportButton();
+    }
+
+    @And("^select 'By date' option$")
+    public void selectByDateOption() {
+        accountManager.selectDateReport();
+    }
+
+    @And("^fill 'mm/dd/yyyy' start date input$")
+    public void fillMmDdYyyyStartDateInput() {
+        accountManager.fillStartDateReport("01/01/2019");
+    }
+
+    @And("^fill 'mm/dd/yyyy' end date input$")
+    public void fillMmDdYyyyEndDateInput() {
+        accountManager.fillEndDateReport("12/01/2019");
+    }
+
+    @Then("^click 'Show Report' button$")
+    public void clickShowReportButton() {
+        accountManager.clickShowReportButton();
+    }
+
+    @And("^select 'By category' option$")
+    public void selectByCategoryOption() {
+        accountManager.selectCategoryReport();
+    }
 }

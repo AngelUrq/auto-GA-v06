@@ -56,6 +56,25 @@ public class AccountManager extends BasePage {
     @FindBy(id = "btn-transfer")
     private WebElement transferTransactionButton;
 
+    @FindBy(id = "Report")
+    private WebElement reportButton;
+
+    @FindBy(xpath = "//select[@id='reportType']//option[@value='date']")
+    private WebElement optionDate;
+
+    @FindBy(xpath = "//select[@id='reportType']//option[@value='category']")
+    private WebElement optionCategory;
+
+    @FindBy(xpath = "//input[@id='startDate']")
+    private WebElement fieldStartDate;
+
+    @FindBy(xpath = "//input[@id='endDate']")
+    private WebElement fieldEndDate;
+
+    @FindBy(id = "showReport")
+    private WebElement showReportButton;
+
+
     public AccountManager() {
         super();
     }
@@ -120,5 +139,26 @@ public class AccountManager extends BasePage {
     public void clickTransferTransactionButton(){
         Events.click(transferTransactionButton);
     }
+    //Report
+    public void clickReportButton(){
+        Events.click(reportButton);
+    }
+    public void selectDateReport(){
+        Events.click(optionDate);
+    }
+    public void selectCategoryReport(){
+        Events.click(optionCategory);
+    }
+    public void fillStartDateReport(String startDate){
+        Events.fillField(fieldName,startDate);
+    }
+    public void fillEndDateReport(String endDate){
+        Events.fillField(fieldName,endDate);
+    }
+    public void clickShowReportButton(){
+        Events.click(showReportButton);
+    }
+
+
 
 }
