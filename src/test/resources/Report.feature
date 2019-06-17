@@ -17,11 +17,32 @@ Feature: Obtain a report of First Account(FA) by date or category
   Scenario: Obtain a report of First Account(FA) by date from a date A to a date B
       And click 'Report' button
       And select 'By date' option
-      And fill 'mm/dd/yyyy' start date input
-      And fill 'mm/dd/yyyy' end date input
+      And fill "01/01/2019" start date input
+      And fill "12/30/2019" end date input
     Then click 'Show Report' button
 
   Scenario: Obtain a report of First Account(FA) by category from a date A to a date B
       And click 'Report' button
       And select 'By category' option
+    Then click 'Show Report' button
+
+  Scenario: Enter invalid characters into date fields must be invalid
+      And click 'Report' button
+      And select 'By date' option
+      And fill "mm/dd/yyyy" start date input
+      And fill "mm/dd/yyyy" end date input
+    Then click 'Show Report' button
+
+  Scenario: Enter special characters into date fields must be invalid
+      And click 'Report' button
+      And select 'By date' option
+      And fill "**/**/****" start date input
+      And fill "--/--/----" end date input
+    Then click 'Show Report' button
+
+  Scenario: Enter invalid format into date fields must be invalid
+      And click 'Report' button
+      And select 'By date' option
+      And fill "25/01/2019" start date input
+      And fill "30/12/2019" end date input
     Then click 'Show Report' button

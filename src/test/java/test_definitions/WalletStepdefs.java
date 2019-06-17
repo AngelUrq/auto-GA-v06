@@ -1,5 +1,6 @@
 package test_definitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -164,5 +165,15 @@ public class WalletStepdefs {
     @And("^select 'By category' option$")
     public void selectByCategoryOption() {
         accountManager.selectCategoryReport();
+    }
+
+    @And("^fill \"([^\"]*)\" start date input$")
+    public void fillStartDateInput(String arg0) throws Throwable {
+        accountManager.fillStartDateReport(arg0);
+    }
+
+    @And("^fill \"([^\"]*)\" end date input$")
+    public void fillEndDateInput(String arg0) throws Throwable {
+        accountManager.fillEndDateReport(arg0);
     }
 }

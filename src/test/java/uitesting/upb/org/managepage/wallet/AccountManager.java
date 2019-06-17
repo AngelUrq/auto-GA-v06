@@ -150,10 +150,10 @@ public class AccountManager extends BasePage {
         Events.click(optionCategory);
     }
     public void fillStartDateReport(String startDate){
-        Events.fillField(fieldName,startDate);
+        Events.fillField(fieldStartDate,startDate);
     }
     public void fillEndDateReport(String endDate){
-        Events.fillField(fieldName,endDate);
+        Events.fillField(fieldEndDate,endDate);
     }
     public void clickShowReportButton(){
         Events.click(showReportButton);
