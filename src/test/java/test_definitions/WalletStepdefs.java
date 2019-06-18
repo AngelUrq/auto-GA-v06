@@ -1,5 +1,6 @@
 package test_definitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -293,5 +294,35 @@ public class WalletStepdefs {
     @Then("^select expense registered on 'Expense View'$")
     public void selectExpenseRegisteredOnExpenseView() {
         incomeExpensesView.selectCreatedExpense();
+    }
+
+    @Then("^fill \"([^\"]*)\" name input on 'Expenses View'$")
+    public void fillNameInputOnExpensesView(String arg0)  {
+        incomeExpensesView.fillNewExpenseName(arg0);
+    }
+
+    @Then("^select 'Expenses' different Expense category on 'Expenses View'$")
+    public void selectExpensesDifferentExpenseCategoryOnExpensesView() {
+        incomeExpensesView.clickExpenseCategoryButton();
+    }
+
+    @And("^fill 'mm/dd/yyyy' new date input on 'Expenses View'$")
+    public void fillMmDdYyyyNewDateInputOnExpensesView() {
+        incomeExpensesView.fillNewExpenseDateInput("11/02/2019");
+    }
+
+    @And("^fill 'Enter Expense Amount' input$")
+    public void fillEnterExpenseAmountInput() {
+        accountManager.fillAmount("500");
+    }
+
+    @And("^fill new \"([^\"]*)\" amount modify expense on 'Expenses View'$")
+    public void fillNewAmountModifyExpenseOnExpensesView(String modifyExpense) {
+        incomeExpensesView.fillNewAmountInput(modifyExpense);
+    }
+
+    @And("^click 'Register Changes' button on 'Expenses View'$")
+    public void clickRegisterChangesButtonOnExpensesView() {
+        incomeExpensesView.clickRegisterModify();
     }
 }

@@ -11,8 +11,8 @@ public class IncomeExpensesView extends BasePage {
     @FindBy(id = "name")
     private WebElement fieldName;
 
-    @FindBy(id = "category")
-    private WebElement categorySelectField;
+    @FindBy(id = "new-category")
+    private WebElement newCategorySelectField;
 
     @FindBy(xpath = "//select[@id='category']//option[contains(text(),'Others')]")
     private WebElement othersCategoryOption;
@@ -26,11 +26,20 @@ public class IncomeExpensesView extends BasePage {
     @FindBy(id = "new-amount")
     private WebElement fieldModifiedAmount;
 
+    @FindBy(id = "new-name")
+    private WebElement fieldNewExpenseName;
+
     @FindBy(id = "dateSpace")
     private WebElement fieldDate;
 
+    @FindBy(id = "new-date")
+    private WebElement fieldNewExpenseDate;
+
     @FindBy(id = "buttonTransaction")
     private WebElement transactionButton;
+
+    @FindBy(id = "buttonChange")
+    private WebElement expenseModifyButton;
 
     @FindBy(id = "account-main-menu")
     private WebElement accountmainmenu;
@@ -63,6 +72,10 @@ public class IncomeExpensesView extends BasePage {
         Events.fillField(fieldDate, date);
     }
 
+    public void fillNewExpenseDateInput(String date) {
+        Events.fillField(fieldNewExpenseDate, date);
+    }
+
     public void clickTransactionButton() {
         Events.click(transactionButton);
     }
@@ -86,6 +99,16 @@ public class IncomeExpensesView extends BasePage {
     }
 
     public void clickExpenseCategoryButton() {
-        Events.selectByText(categorySelectField, "Expenses");   }
+        Events.selectByText(newCategorySelectField, "Expenses");   }
+
+
+    public void fillNewExpenseName(String newExpenseName){
+        Events.fillField(fieldNewExpenseName, newExpenseName);
+    }
+
+    public void clickRegisterModify() {
+        Events.click(expenseModifyButton);
+    }
+
 
 }
