@@ -2,6 +2,7 @@ package uitesting.upb.org.manageevents;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import uitesting.upb.org.webdrivermanager.DriverManager;
 
@@ -35,6 +36,11 @@ public class Events {
     public static void selectByText(WebElement element, String text) {
         Select selectElement = new Select(element);
         selectElement.selectByVisibleText(text);
+    }
+
+    public static void hover(WebElement element) {
+        Actions action = new Actions(DriverManager.getInstance().getWebDriver());
+        action.moveToElement(element).perform();
     }
 
 }

@@ -3,29 +3,15 @@ package test_definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
-import uitesting.upb.org.managepage.wallet.*;
+import uitesting.upb.org.managepage.adidas.HomePage;
+import uitesting.upb.org.managepage.adidas.ShopPage;
 
-public class WalletStepdefs {
+public class AdidasStepdefs {
 
-    public final static String EXAMPLE_ACCOUNT_NAME = "My new account";
-
-    private AccountManager accountManager;
-    private AccountCreator accountCreator;
-    private NavBar navBar;
-    private AccountSettings accountSettings;
-
-    private ReportsPage reportsPage;
-    private ReportTable reportTable;
-
-    private AccountMainMenu accountMainMenu;
-
-    private IncomeExpensesView incomeExpensesView;
-
-    private GeneralReports generalReports;
-
+    private HomePage homePage;
+    private ShopPage shopPage;
+/*
     @Given("^Account manager is loaded$")
     public void accountManagerIsLoaded() {
         accountManager = LoadPage.loadAccountManager();
@@ -39,11 +25,6 @@ public class WalletStepdefs {
     @Then("^click 'Add' button on 'Account Manager'$")
     public void clickAddButtonOnAccountManager() {
         accountManager.clickAddAccountButton();
-    }
-
-    @And("^new account is created$")
-    public void newAccountIsCreated() {
-        accountManager.createAccount(EXAMPLE_ACCOUNT_NAME);
     }
 
     @Then("^check if \"([^\"]*)\" button is visible on 'Account Manager'$")
@@ -162,12 +143,6 @@ public class WalletStepdefs {
     @Then("^click 'Transfer' button on transfer page$")
     public void clickTransferButtonOnTransferPage() {
         accountManager.clickTransferTransactionButton();
-    }
-
-    @Given("^Browser is loaded$")
-    public void browserIsLoaded() {
-        accountManager = LoadPage.loadAccountManager();
-        accountCreator = LoadPage.loadAccountCreator();
     }
 
     @Then("^Fill 'Account Name' text field in 'Account Creator' page$")
@@ -366,6 +341,31 @@ public class WalletStepdefs {
     @And("^Click 'Home Page' button in 'NavBar' page$")
     public void clickHomePageButtonInNavBarPage() {
         navBar.clickHomeButton();
+    }*/
+
+    @Given("^Browser is loaded$")
+    public void browserIsLoaded() {
+        homePage = LoadPage.loadHomePage();
+    }
+
+    @And("^Hover 'Hombre' on 'Home Page'$")
+    public void hoverHombreOnHomePage() {
+        homePage.hoverHombre();
+    }
+
+    @Then("^click 'Futbol' on 'Home Page'$")
+    public void clickFutbolOnHomePage() {
+        shopPage = homePage.clickFutbolButton();
+    }
+
+    @And("^click 'First shoes' on 'Shop Page'$")
+    public void clickFirstShoesOnShopPage() {
+        shopPage.clickFirstShoes();
+    }
+
+    @And("^look for price of 'First shoes' on 'Shop Page'$")
+    public void lookForPriceOfFirstShoesOnShopPage() {
+        shopPage.lookForPrice();
     }
 
 }
