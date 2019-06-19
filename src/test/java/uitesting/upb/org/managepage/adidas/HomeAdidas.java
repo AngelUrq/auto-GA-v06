@@ -9,18 +9,23 @@ import uitesting.upb.org.webdrivermanager.DriverManager;
 
 public class HomeAdidas extends BasePage {
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/a")
-    private WebElement futbolButton;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div/div/div[1]/div/div[3]/div/div[1]/div[1]/div/div/div/div/div/div/div/div/div[1]/div[2]/ul/li[2]/a")
+    @FindBy(xpath = "//*[@class=\"label\" and @manual_cm_sp=\"header-_-HOMBRE\"]")
+    private WebElement futbolNavBar;
+
+    @FindBy(xpath = "//*[@manual_cm_sp=\"header-_-hombre-_-tenis-_-fútbol\" and @href=\"/calzado_de_futbol-hombre\"]")
     private WebElement futbolButtonLink;
 
+
     public void hoverOverHombre( ) {
-        Events.Hover(DriverManager.getInstance().getWebDriver(), futbolButton);
+        Events.Hover(DriverManager.getInstance().getWebDriver(), futbolNavBar);
     }
 
     public void clickFutbol(){
         Events.click(futbolButtonLink);
     }
+
+
+
 }
 

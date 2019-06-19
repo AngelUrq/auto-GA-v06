@@ -1,6 +1,7 @@
 package uitesting.upb.org.webdrivermanager;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import uitesting.upb.org.managefile.PropertyAccessor;
 
 /**
@@ -9,6 +10,7 @@ import uitesting.upb.org.managefile.PropertyAccessor;
 public class DriverManager {
     private WebDriver webDriver;
     private static DriverManager ourInstance = new DriverManager();
+    public WebDriverWait wait;
 
     public static DriverManager getInstance() {
         return ourInstance;
@@ -16,6 +18,7 @@ public class DriverManager {
 
     private DriverManager() {
         webDriver = DriverFactory.getWebDriver(BrowserType.valueOf(PropertyAccessor.getInstance().getBrowser()));
+        wait = new WebDriverWait(webDriver, 30);
     }
 
     public WebDriver getWebDriver(){

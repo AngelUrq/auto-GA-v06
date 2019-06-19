@@ -325,4 +325,6 @@ public class WalletStepdefs {
     public void clickRegisterChangesButtonOnExpensesView() {
         incomeExpensesView.clickRegisterModify();
     }
+
+
 }
