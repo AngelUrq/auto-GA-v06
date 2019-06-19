@@ -3,14 +3,17 @@ package test_definitions;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
+import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.adidas.HomePage;
+import uitesting.upb.org.managepage.adidas.ShoesPage;
 import uitesting.upb.org.managepage.adidas.ShopPage;
 
 public class AdidasStepdefs {
 
     private HomePage homePage;
     private ShopPage shopPage;
+    private ShoesPage shoesPage;
 /*
     @Given("^Account manager is loaded$")
     public void accountManagerIsLoaded() {
@@ -358,14 +361,54 @@ public class AdidasStepdefs {
         shopPage = homePage.clickFutbolButton();
     }
 
-    @And("^click 'First shoes' on 'Shop Page'$")
-    public void clickFirstShoesOnShopPage() {
-        shopPage.clickFirstShoes();
-    }
-
     @And("^look for price of 'First shoes' on 'Shop Page'$")
     public void lookForPriceOfFirstShoesOnShopPage() {
         shopPage.lookForPrice();
+    }
+
+    @And("^click 'First shoes' on 'Shop Page'$")
+    public void clickFirstShoesOnShopPage() {
+        shoesPage = shopPage.clickFirstShoes();
+    }
+
+    @Then("^select \"([^\"]*)\" in 'Talla' selector on 'Shoes Page'$")
+    public void selectInTallaSelectorOnShoesPage(String talla) {
+        shoesPage.selectTalla(talla);
+    }
+
+    @And("^click 'Añadir al carrito' button on 'Shoes Page'$")
+    public void clickAñadirAlCarritoButtonOnShoesPage() {
+        shoesPage.clickCarritoButton();
+    }
+
+    @Then("^span 'Cantidad' text should be \"([^\"]*)\" on 'Shoes Page'$")
+    public void spanCantidadTextShouldBeOnShoesPage(String cantidad) {
+        Assert.assertTrue(shoesPage.cantidadEquals(cantidad));
+    }
+
+    @And("^click 'Ver el carrito' button on 'Shoes Page'$")
+    public void clickVerElCarritoButtonOnShoesPage() {
+        shoesPage.clickVerElCarritoButton();
+    }
+
+    @Then("^'Calzado de Fútbol Nemeziz (\\d+)\\.(\\d+) Terreno Firme' title should be displayed on 'Shoes Page'$")
+    public void calzadoDeFútbolNemezizTerrenoFirmeTitleShouldBeDisplayedOnShoesPage(int arg0, int arg1) {
+        Assert.assertTrue(shoesPage.titleIsDisplayed());
+    }
+
+    @And("^'Quantity' should be \"([^\"]*)\" on 'Shoes Page'$")
+    public void quantityShouldBeOnShoesPage(String cantidad) throws Throwable {
+        Assert.assertTrue(shoesPage.quantityEqual(cantidad));
+    }
+
+    @And("^'Total del producto' should be equal to shoes price on 'Shoes page'$")
+    public void totalDelProductoShouldBeEqualToShoesPriceOnShoesPage() {
+        Assert.assertTrue(shoesPage.totalDelProductoIsEqualToShoesPrice());
+    }
+
+    @And("^'Total' should be equal to shoes price on 'Shoes page'$")
+    public void totalShouldBeEqualToShoesPriceOnShoesPage() {
+        Assert.assertTrue(shoesPage.totalIsEqualToShoesPrice());
     }
 
 }
