@@ -6,17 +6,22 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
-import uitesting.upb.org.managepage.wallet.AccountManager;
+import uitesting.upb.org.managepage.wallet.*;
 
 public class WalletStepdefs {
 
     public final static String EXAMPLE_ACCOUNT_NAME = "My new account";
 
     private AccountManager accountManager;
+    private AdidasMainPage adidasMainPage;
+    private CalzadoHombrePage calzadoHombrePage;
+    private SingleTennisPage singleTennisPage;
+    private TennisCart tennisCart;
+
 
     @Given("^Account manager is loaded$")
     public void accountManagerIsLoaded() {
-        accountManager = LoadPage.loadAccountManager();
+        adidasMainPage = LoadPage.loadAdidasMainPage();
     }
 
     @And("^fill \"([^\"]*)\" 'Account name' input on 'Account Manager'$")
@@ -48,7 +53,7 @@ public class WalletStepdefs {
 
     @Given("^Account creator is loaded$")
     public void accountCreatorIsLoaded() {
-        accountManager=LoadPage.loadAccountManager();
+        adidasMainPage=LoadPage.loadAdidasMainPage();
     }
 
     @And("^fill 'Account name' input with first account$")
@@ -175,5 +180,70 @@ public class WalletStepdefs {
     @And("^fill \"([^\"]*)\" end date input$")
     public void fillEndDateInput(String arg0) throws Throwable {
         accountManager.fillEndDateReport(arg0);
+    }
+
+    @And("^Mouseover 'HOMBRE' option$")
+    public void mouseoverHOMBREOption() {
+        adidasMainPage.hoverHombre();
+    }
+
+    @And("^Click 'Futbol' option$")
+    public void clickFutbolOption() {
+        calzadoHombrePage=adidasMainPage.clickOptionFutbol();
+    }
+
+    @And("^Get price of the first item$")
+    public void getPriceOfTheFirstItem() {
+        calzadoHombrePage.getPrice();
+    }
+
+    @And("^Click on first item$")
+    public void clickOnFirstItem() {
+        singleTennisPage=calzadoHombrePage.clickSelectTennis();
+    }
+
+    @And("^Click on 'ELIGE TU TALLA' button$")
+    public void clickOnELIGETUTALLAButton() {
+        singleTennisPage.clickButtonSelectSize();
+    }
+
+    @And("^Click on size required option$")
+    public void clickOnSizeRequiredOption() {
+        singleTennisPage.clickChooseSize();
+    }
+
+    @And("^Click on 'ANADIR AL CARRITO' button$")
+    public void clickOnANADIRALCARRITOButton() {
+        singleTennisPage.clickButtonAddToCart();
+    }
+
+    @And("^Quantity on Cart icon is 'One'$")
+    public void quantityOnCartIconIsOne() {
+        singleTennisPage.checkQuantity();
+    }
+
+    @And("^Click on 'VER CARRITO' button$")
+    public void clickOnVERCARRITOButton() {
+        tennisCart=singleTennisPage.clickCartLink();
+    }
+
+    @And("^Title of product is 'CALZADO DE FÚTBOL NEMEZIZ'$")
+    public void titleOfProductIsCALZADODEFÚTBOLNEMEZIZ() {
+        tennisCart.checkIfTitleIsVisible("CALZADO DE FÚTBOL NEMEZIZ 19.3 TERRENO FIRME");
+    }
+
+    @And("^Quantity of item is 'One'$")
+    public void quantityOfItemIsOne() {
+        tennisCart.checkQuantity("1");
+    }
+
+    @And("^Partial price is '(\\d+)\\.(\\d+)'$")
+    public void partialPriceIs(int arg0, int arg1) {
+        tennisCart.checkPartialPrice(arg0+"."+arg1);
+    }
+
+    @Then("^Total price is '(\\d+)\\.(\\d+)'$")
+    public void totalPriceIs(int arg0, int arg1) {
+        tennisCart.checkTotalPrice(arg0+"."+arg1);
     }
 }

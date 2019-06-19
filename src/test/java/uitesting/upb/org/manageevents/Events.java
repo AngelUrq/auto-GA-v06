@@ -37,10 +37,11 @@ public class Events {
     }
     public static void hover(WebElement webElement){
         Actions builder=new Actions(DriverManager.getInstance().getWebDriver());
-        builder.moveToElement(webElement).build().perform();
+        builder.moveToElement(webElement).perform();
     }
-    public static void getText(WebElement webElement){
-        webElement.getText();
+    public static String getText(WebElement webElement){
+        String textValue=webElement.getText();
+        return textValue;
     }
 
 }
