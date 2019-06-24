@@ -1,5 +1,7 @@
 package test_definitions;
 
+import cucumber.api.DataTable;
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -8,7 +10,14 @@ import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.wallet.*;
 
+import java.util.List;
+import java.util.Map;
+
 public class WalletStepdefs {
+
+    public enum AccountNameEnum {
+        ACCOUNT_NAME_1
+    }
 
     private final static String EXAMPLE_ACCOUNT_NAME = "My new account";
 
@@ -381,6 +390,40 @@ public class WalletStepdefs {
     @And("^'Report' button is visible on 'Account Main Menu'$")
     public void reportButtonIsVisibleOnAccountMainMenu() {
         Assert.assertTrue(accountMainMenu.reportButtonIsVisible());
+    }
+
+    @And("^create accounts of \"([^\"]*)\" on 'Account Creator'$")
+    public void createAccountsOfOnAccountCreator(List<String> listOfAccountNames) {
+        for(String name:listOfAccountNames){
+            accountManager.createAccount(name);
+        }
+    }
+
+    @Then("^\"([^\"]*)\" buttons are visible on 'Account Manager'$")
+    public void buttonsAreVisibleOnAccountManager(List<String> listOfAccountNames) {
+        for(String name:listOfAccountNames){
+            Assert.assertTrue(accountManager.newAccountButtonIsVisible(name));
+        }
+    }
+
+    @Then("^following accounts are visible on 'Account List'$")
+    public void followingAccountsAreVisibleOnAccountList(DataTable dataTable) {
+        List<Map<String, String>> list = dataTable.asMaps(String.class, String.class);
+
+        for(Map<String, String> accountMap : list){
+            Assert.assertTrue(accountManager.newAccountButtonIsVisible(accountMap.get("Account name")));
+        }
+    }
+
+
+    @And("^create account \"([^\"]*)\" on 'Account Creator'$")
+    public void createAccountOnAccountCreator(AccountNameEnum accountNameEnum) {
+        accountManager.createAccount(accountNameEnum.toString());
+    }
+
+    @Then("^\"([^\"]*)\" button is visible on 'Account Manager'$")
+    public void buttonIsVisibleOnAccountManager(AccountNameEnum accountNameEnum) {
+        accountManager.newAccountButtonIsVisible(accountNameEnum.toString());
     }
 
 }

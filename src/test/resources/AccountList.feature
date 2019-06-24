@@ -17,3 +17,19 @@ Feature: Select an account
   Scenario: Choose the general user account on 'Account List'
     And click 'General' account button on 'Account Manager'
     Then title is visible on 'General Reports'
+
+  Scenario: New account is visible on 'Account List'
+    And create account "ACCOUNT_NAME_1" on 'Account Creator'
+    Then "ACCOUNT_NAME_1" button is visible on 'Account Manager'
+
+  Scenario Outline: New accounts buttons are visible on 'Account List'
+    And create accounts of "<listOfAccountNames>" on 'Account Creator'
+    Then "<listOfAccountNames>" buttons are visible on 'Account Manager'
+    Examples:
+    | listOfAccountNames |
+    | Account 1, Account 2, Account 3, Account 4, Account 5 |
+
+  Scenario: General account is visible on 'Account List'
+    Then following accounts are visible on 'Account List'
+    | Account name |
+    | general |
