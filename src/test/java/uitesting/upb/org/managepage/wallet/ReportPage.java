@@ -22,6 +22,9 @@ public class ReportPage extends BasePage {
     @FindBy(id = "showReport")
     private WebElement showReportButton;
 
+    @FindBy(id = "reportType")
+    private WebElement reportTypeComboBox;
+
     public ReportPage() {
         super();
     }
@@ -49,5 +52,7 @@ public class ReportPage extends BasePage {
     public boolean endDateFieldIsVisible(){
         return Events.isVisibleWebElement(fieldEndDate);
     }
-
+    public boolean reportTypeComboBoxIsVisible(){
+        return Events.isVisibleWebElement(reportTypeComboBox);
+    }
 }

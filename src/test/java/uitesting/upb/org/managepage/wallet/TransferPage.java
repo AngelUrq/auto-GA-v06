@@ -16,6 +16,9 @@ public class TransferPage extends BasePage {
     @FindBy(id = "amount")
     private WebElement fieldAmountTransfer;
 
+    @FindBy(id = "settings")
+    private WebElement settingsButton;
+
     public TransferPage() {
         super();
     }
@@ -34,7 +37,7 @@ public class TransferPage extends BasePage {
     public boolean transferButtonIsVisible(){
         return Events.isVisibleWebElement(transferTransactionButton);
     }
-
-
-
+    public boolean settingsButtonIsVisible(){
+        return Events.isVisibleWebElement(settingsButton);
+    }
 }

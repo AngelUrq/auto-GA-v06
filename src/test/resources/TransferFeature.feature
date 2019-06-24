@@ -16,6 +16,7 @@ Feature: Transfer between accounts First Account(FA) and Second Account(SA)
       And  Then select first account again
 
   Scenario: Do a transfer of an amount from first account to second account
+      And Settings button is visible
       And click 'Transfer' button
       And select 'Second Account' option
       And fill "10" on field amount
@@ -23,6 +24,7 @@ Feature: Transfer between accounts First Account(FA) and Second Account(SA)
     Then click 'Transfer' button on transfer page
 
   Scenario: Don't do a transfer of an amount from FA to SA where the amount is greater than the balance
+      And Settings button is visible
       And click 'Transfer' button
       And select 'Second Account' option
       And Transfer button is visible
@@ -30,6 +32,7 @@ Feature: Transfer between accounts First Account(FA) and Second Account(SA)
     Then click 'Transfer' button on transfer page
 
   Scenario: Don't do a transfer of an amount from FA to SA where the amount is negative
+      And Settings button is visible
       And click 'Transfer' button
       And select 'Second Account' option
       And Transfer button is visible
@@ -37,6 +40,7 @@ Feature: Transfer between accounts First Account(FA) and Second Account(SA)
     Then click 'Transfer' button on transfer page
 
   Scenario: Don't do a transfer entering a letter from FA to SA
+      And Settings button is visible
       And click 'Transfer' button
       And select 'Second Account' option
       And Transfer button is visible
