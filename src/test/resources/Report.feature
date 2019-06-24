@@ -17,8 +17,11 @@ Feature: Obtain a report of First Account(FA) by date or category
   Scenario: Obtain a report of First Account(FA) by date from a date A to a date B
       And click 'Report' button
       And select 'By date' option
+      And StartDate field is visible
+      And EndtDate field is visible
       And fill "01/01/2019" start date input
       And fill "12/30/2019" end date input
+      And Report button is visible
     Then click 'Show Report' button
 
   Scenario: Obtain a report of First Account(FA) by category from a date A to a date B

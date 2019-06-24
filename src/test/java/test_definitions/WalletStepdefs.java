@@ -1,18 +1,21 @@
 package test_definitions;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.wallet.AccountManager;
+import uitesting.upb.org.managepage.wallet.ReportPage;
+import uitesting.upb.org.managepage.wallet.TransferPage;
 
 public class WalletStepdefs {
 
     public final static String EXAMPLE_ACCOUNT_NAME = "My new account";
 
     private AccountManager accountManager;
+    private ReportPage reportPage;
+    private TransferPage transferPage;
 
     @Given("^Account manager is loaded$")
     public void accountManagerIsLoaded() {
@@ -118,62 +121,82 @@ public class WalletStepdefs {
 
     @And("^click 'Transfer' button$")
     public void clickTransferButton() {
-        accountManager.clickTransferButton();
+        transferPage=accountManager.clickTransferButton();
     }
 
     @And("^select 'Second Account' option$")
     public void selectSecondAccountOption() {
-        accountManager.selectAccountDestination();
+        transferPage.selectAccountDestination();
     }
 
     @And("^fill \"([^\"]*)\" on field amount$")
     public void fillOnFieldAmount(String amount) throws Throwable {
-        accountManager.clearFieldAmount();
-        accountManager.fillAmountTransfer(amount);
+        transferPage.clearFieldAmount();
+        transferPage.fillAmountTransfer(amount);
+    }
+
+    @And("^Transfer button is visible$")
+    public void transferButtonIsVisible() {
+        transferPage.transferButtonIsVisible();
     }
 
     @Then("^click 'Transfer' button on transfer page$")
     public void clickTransferButtonOnTransferPage() {
-        accountManager.clickTransferTransactionButton();
+        transferPage.clickTransferTransactionButton();
     }
 
     @And("^click 'Report' button$")
     public void clickReportButton() {
-        accountManager.clickReportButton();
+        reportPage=accountManager.clickReportButton();
     }
 
     @And("^select 'By date' option$")
     public void selectByDateOption() {
-        accountManager.selectDateReport();
+        reportPage.selectDateReport();
     }
 
     @And("^fill 'mm/dd/yyyy' start date input$")
     public void fillMmDdYyyyStartDateInput() {
-        accountManager.fillStartDateReport("01/01/2019");
+        reportPage.fillStartDateReport("01/01/2019");
     }
 
     @And("^fill 'mm/dd/yyyy' end date input$")
     public void fillMmDdYyyyEndDateInput() {
-        accountManager.fillEndDateReport("12/01/2019");
+        reportPage.fillEndDateReport("12/01/2019");
+    }
+
+    @And("^StartDate field is visible$")
+    public void startdateFieldIsVisible() {
+        Assert.assertTrue(reportPage.startDateFieldIsVisible());
+    }
+
+    @And("^EndtDate field is visible$")
+    public void endtdateFieldIsVisible() {
+        Assert.assertTrue(reportPage.endDateFieldIsVisible());
+    }
+
+    @And("^Report button is visible$")
+    public void reportButtonIsVisible() {
+        Assert.assertTrue(reportPage.reportButtonIsVisible());
     }
 
     @Then("^click 'Show Report' button$")
     public void clickShowReportButton() {
-        accountManager.clickShowReportButton();
+        reportPage.clickShowReportButton();
     }
 
     @And("^select 'By category' option$")
     public void selectByCategoryOption() {
-        accountManager.selectCategoryReport();
+        reportPage.selectCategoryReport();
     }
 
     @And("^fill \"([^\"]*)\" start date input$")
     public void fillStartDateInput(String arg0) throws Throwable {
-        accountManager.fillStartDateReport(arg0);
+        reportPage.fillStartDateReport(arg0);
     }
 
     @And("^fill \"([^\"]*)\" end date input$")
     public void fillEndDateInput(String arg0) throws Throwable {
-        accountManager.fillEndDateReport(arg0);
+        reportPage.fillEndDateReport(arg0);
     }
 }
