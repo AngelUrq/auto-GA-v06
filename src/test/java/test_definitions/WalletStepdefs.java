@@ -7,7 +7,6 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.wallet.*;
-
 public class WalletStepdefs {
 
     private final static String EXAMPLE_ACCOUNT_NAME = "My new account";
@@ -25,6 +24,8 @@ public class WalletStepdefs {
     private IncomeExpensesView incomeExpensesView;
 
     private GeneralReports generalReports;
+    private ReportPage reportPage;
+    private TransferPage transferPage;
 
     @Given("^Account manager is loaded$")
     public void accountManagerIsLoaded() {
@@ -145,23 +146,97 @@ public class WalletStepdefs {
 
     @And("^click 'Transfer' button$")
     public void clickTransferButton() {
-        accountManager.clickTransferButton();
+        transferPage=accountManager.clickTransferButton();
     }
 
     @And("^select 'Second Account' option$")
     public void selectSecondAccountOption() {
-        accountManager.selectAccountDestination();
+        transferPage.selectAccountDestination();
     }
 
     @And("^fill \"([^\"]*)\" on field amount$")
     public void fillOnFieldAmount(String amount) {
         accountManager.clearFieldAmount();
         accountManager.fillAmountTransfer(amount);
+
+    public void fillOnFieldAmount(String amount) throws Throwable {
+        transferPage.clearFieldAmount();
+        transferPage.fillAmountTransfer(amount);
+    }
+
+    @And("^Transfer button is visible$")
+    public void transferButtonIsVisible() {
+        Assert.assertTrue(transferPage.transferButtonIsVisible());
     }
 
     @Then("^click 'Transfer' button on transfer page$")
     public void clickTransferButtonOnTransferPage() {
-        accountManager.clickTransferTransactionButton();
+        transferPage.clickTransferTransactionButton();
+    }
+
+    @And("^click 'Report' button$")
+    public void clickReportButton() {
+        reportPage=accountManager.clickReportButton();
+    }
+
+    @And("^ReporType ComboBox is visible$")
+    public void reportypeComboBoxIsVisible() {
+        Assert.assertTrue(reportPage.reportTypeComboBoxIsVisible());
+    }
+
+    @And("^select 'By date' option$")
+    public void selectByDateOption() {
+        reportPage.selectDateReport();
+    }
+
+    @And("^fill 'mm/dd/yyyy' start date input$")
+    public void fillMmDdYyyyStartDateInput() {
+        reportPage.fillStartDateReport("01/01/2019");
+    }
+
+    @And("^fill 'mm/dd/yyyy' end date input$")
+    public void fillMmDdYyyyEndDateInput() {
+        reportPage.fillEndDateReport("12/01/2019");
+    }
+
+    @And("^StartDate field is visible$")
+    public void startdateFieldIsVisible() {
+        Assert.assertTrue(reportPage.startDateFieldIsVisible());
+    }
+
+    @And("^EndtDate field is visible$")
+    public void endtdateFieldIsVisible() {
+        Assert.assertTrue(reportPage.endDateFieldIsVisible());
+    }
+
+    @And("^Report button is visible$")
+    public void reportButtonIsVisible() {
+        Assert.assertTrue(reportPage.reportButtonIsVisible());
+    }
+
+    @And("^ReporType ComboBox is not visible$")
+    public void reportypeComboBoxIsNotVisible() {
+        Assert.assertFalse(reportPage.reportTypeComboBoxIsVisible());
+    }
+
+    @Then("^click 'Show Report' button$")
+    public void clickShowReportButton() {
+        reportPage.clickShowReportButton();
+    }
+
+    @And("^select 'By category' option$")
+    public void selectByCategoryOption() {
+        reportPage.selectCategoryReport();
+    }
+
+    @And("^fill \"([^\"]*)\" start date input$")
+    public void fillStartDateInput(String arg0) throws Throwable {
+        reportPage.fillStartDateReport(arg0);
+    }
+
+    @And("^fill \"([^\"]*)\" end date input$")
+    public void fillEndDateInput(String arg0) throws Throwable {
+        reportPage.fillEndDateReport(arg0);
     }
 
     @Given("^Browser is loaded$")
@@ -381,6 +456,7 @@ public class WalletStepdefs {
     @And("^'Report' button is visible on 'Account Main Menu'$")
     public void reportButtonIsVisibleOnAccountMainMenu() {
         Assert.assertTrue(accountMainMenu.reportButtonIsVisible());
+    }
     }
 
 }

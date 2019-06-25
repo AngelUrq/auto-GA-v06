@@ -32,9 +32,6 @@ public class AccountManager extends BasePage {
     @FindBy(xpath = "//select[@id='category']//option[contains(text(),'Expenses')]")
     private WebElement optionExpense;
 
-    @FindBy(id = "amount")
-    private WebElement fieldAmount;
-
     @FindBy(id = "dateSpace")
     private WebElement fieldDate;
 
@@ -44,17 +41,14 @@ public class AccountManager extends BasePage {
     @FindBy(id = "exit")
     private WebElement exitButton;
 
+    @FindBy(id = "amount")
+    private WebElement fieldAmount;
+
     @FindBy(id = "Transfer")
     private WebElement transferButton;
 
-    @FindBy(xpath = "//select[@id='destinationAccount']//option[contains(text(),'Second Account')]")
-    private WebElement optionAccountDestination;
-
-    @FindBy(id = "amount")
-    private WebElement fieldAmountTransfer;
-
-    @FindBy(id = "btn-transfer")
-    private WebElement transferTransactionButton;
+    @FindBy(id = "Report")
+    private WebElement reportButton;
 
     public AccountManager() {
         super();
@@ -100,6 +94,11 @@ public class AccountManager extends BasePage {
     }
 
     public void clickIncomeButton() {
+    public void fillAmount(String bs){
+        Events.fillField(fieldAmount,bs);
+    }
+
+    public void clickIncomeButton(){
         Events.click(incomeButton);
     }
 
@@ -117,6 +116,8 @@ public class AccountManager extends BasePage {
 
     public void fillDate(String date) {
         Events.fillField(fieldDate, date);
+    public void fillDate(String date){
+        Events.fillField(fieldDate,date);
     }
 
     public void registerTransaction() {
@@ -128,7 +129,9 @@ public class AccountManager extends BasePage {
     }
 
     public void clickTransferButton() {
+    public TransferPage clickTransferButton(){
         Events.click(transferButton);
+        return new TransferPage();
     }
 
     public void selectAccountDestination() {
@@ -145,6 +148,10 @@ public class AccountManager extends BasePage {
 
     public void clickTransferTransactionButton() {
         Events.click(transferTransactionButton);
+    public ReportPage clickReportButton(){
+        Events.click(reportButton);
+        return new ReportPage();
     }
+
 
 }
