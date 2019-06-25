@@ -124,11 +124,6 @@ public class WalletStepdefs {
         transferPage=accountManager.clickTransferButton();
     }
 
-    @And("^Settings button is visible$")
-    public void settingsButtonIsVisible() {
-        Assert.assertTrue(transferPage.settingsButtonIsVisible());
-    }
-
     @And("^select 'Second Account' option$")
     public void selectSecondAccountOption() {
         transferPage.selectAccountDestination();
@@ -188,6 +183,11 @@ public class WalletStepdefs {
     @And("^Report button is visible$")
     public void reportButtonIsVisible() {
         Assert.assertTrue(reportPage.reportButtonIsVisible());
+    }
+
+    @And("^ReporType ComboBox is not visible$")
+    public void reportypeComboBoxIsNotVisible() {
+        Assert.assertFalse(reportPage.reportTypeComboBoxIsVisible());
     }
 
     @Then("^click 'Show Report' button$")

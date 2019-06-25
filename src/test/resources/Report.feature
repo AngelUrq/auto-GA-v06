@@ -15,7 +15,6 @@ Feature: Obtain a report of First Account(FA) by date or category
     Then click 'Exit' Button
       And  Then select first account again
   Scenario: Obtain a report of First Account(FA) by date from a date A to a date B
-      And ReporType ComboBox is visible
       And click 'Report' button
       And select 'By date' option
       And StartDate field is visible
@@ -31,7 +30,6 @@ Feature: Obtain a report of First Account(FA) by date or category
     Then click 'Show Report' button
 
   Scenario: Enter invalid characters into date fields must be invalid
-      And ReporType ComboBox is visible
       And click 'Report' button
       And select 'By date' option
       And fill "mm/dd/yyyy" start date input
@@ -39,7 +37,6 @@ Feature: Obtain a report of First Account(FA) by date or category
     Then click 'Show Report' button
 
   Scenario: Enter special characters into date fields must be invalid
-      And ReporType ComboBox is visible
       And click 'Report' button
       And select 'By date' option
       And fill "**/**/****" start date input
@@ -47,7 +44,6 @@ Feature: Obtain a report of First Account(FA) by date or category
     Then click 'Show Report' button
 
   Scenario: Enter invalid format into date fields must be invalid
-      And ReporType ComboBox is visible
       And click 'Report' button
       And select 'By date' option
       And fill "25/01/2019" start date input
