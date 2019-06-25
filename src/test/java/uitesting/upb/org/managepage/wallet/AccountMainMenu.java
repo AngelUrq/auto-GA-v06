@@ -51,14 +51,20 @@ public class AccountMainMenu extends BasePage {
         return new IncomeExpensesView();
     }
 
+    public TransferPage clickTransferButton() {
+        Events.click(transferButton);
+
+        return new TransferPage();
+    }
+
     public boolean mainMenuisLoaded(){
         return Events.isVisibleWebElement(incomeButton) && Events.isVisibleWebElement(expensesButton)
                 && Events.isVisibleWebElement(reportButton);
     }
 
-    public ReportsPage clickReportButton(){
+    public ReportPage clickReportButton(){
         Events.click(reportButton);
-        return new ReportsPage();
+        return new ReportPage();
     }
 
 }

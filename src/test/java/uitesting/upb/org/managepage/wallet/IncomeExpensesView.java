@@ -133,5 +133,4 @@ public class IncomeExpensesView extends BasePage {
         Events.click(expenseModifyButton);
     }
 
-
 }
