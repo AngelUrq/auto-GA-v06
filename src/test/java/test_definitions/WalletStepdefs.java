@@ -102,7 +102,7 @@ public class WalletStepdefs {
 
     @And("^click 'Income' button$")
     public void clickIncomeButton() {
-        accountManager.clickIncomeButton();
+        incomeExpensesView = accountMainMenu.clickIncomeButton();
     }
 
     @And("^click 'Income' button on 'Account Main Menu'$")
@@ -419,5 +419,63 @@ public class WalletStepdefs {
     public void verifyTheNameWasnTAddedToAnAccountInAccountCreatorPage(String name) {
         accountCreator = new AccountCreator();
         Assert.assertNull(accountCreator.accountButtonExists(name));
+    @Then("^fill \"([^\"]*)\" name input on 'Expenses View'$")
+    public void fillNameInputOnExpensesView(String arg0)  {
+        incomeExpensesView.fillNewExpenseName(arg0);
+    }
+
+    @Then("^select 'Expenses' different Expense category on 'Expenses View'$")
+    public void selectExpensesDifferentExpenseCategoryOnExpensesView() {
+        incomeExpensesView.clickExpenseCategoryButton();
+    }
+
+    @And("^fill 'mm/dd/yyyy' new date input on 'Expenses View'$")
+    public void fillMmDdYyyyNewDateInputOnExpensesView() {
+        incomeExpensesView.fillNewExpenseDateInput("11/02/2019");
+    }
+
+    @And("^fill 'Enter Expense Amount' input$")
+    public void fillEnterExpenseAmountInput() {
+        accountManager.fillAmount("500");
+    }
+
+    @And("^fill new \"([^\"]*)\" amount modify expense on 'Expenses View'$")
+    public void fillNewAmountModifyExpenseOnExpensesView(String modifyExpense) {
+        incomeExpensesView.fillNewAmountInput(modifyExpense);
+    }
+
+    @And("^click 'Register Changes' button on 'Expenses View'$")
+    public void clickRegisterChangesButtonOnExpensesView() {
+        incomeExpensesView.clickRegisterModify();
+    }
+
+    @Then("^select income registered on 'Income View'$")
+    public void selectIncomeRegisteredOnIncomeView() {
+        incomeExpensesView.selectCreatedIncome();
+    }
+
+    @Then("^fill \"([^\"]*)\" name input on 'Income View'$")
+    public void fillNameInputOnIncomeView(String arg0) throws Throwable {
+        incomeExpensesView.fillNewIncomeName(arg0);
+    }
+
+    @Then("^select 'Others' different Income category on 'Income View'$")
+    public void selectOthersDifferentIncomeCategoryOnIncomeView() {
+        incomeExpensesView.clickIncomeCategoryButton();
+    }
+
+    @And("^fill new \"([^\"]*)\" amount modify income on 'Income View'$")
+    public void fillNewAmountModifyIncomeOnIncomeView(String arg0) throws Throwable {
+        incomeExpensesView.fillNewAmountInput(arg0);
+    }
+
+    @And("^click 'Register Changes' button on 'Income View'$")
+    public void clickRegisterChangesButtonOnIncomeView() {
+        incomeExpensesView.clickRegisterModify();
+    }
+
+    @And("^check 'error message' display$")
+    public void checkErrorMessageDisplay() {
+        Assert.assertTrue(incomeExpensesView.modifyErrorIsVisible());
     }
 }
