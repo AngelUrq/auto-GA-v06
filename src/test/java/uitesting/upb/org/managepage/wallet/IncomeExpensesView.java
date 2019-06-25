@@ -20,6 +20,9 @@ public class IncomeExpensesView extends BasePage {
     @FindBy(xpath = "//select[@id='old-name']//option[contains(text(),'Salario Junio')]")
     private WebElement registeredExpenseOption;
 
+    @FindBy(xpath = "//select[@id='old-name']//option[contains(text(),'Salario Junio')]")
+    private WebElement registeredIncomeOption;
+
     @FindBy(id = "amount")
     private WebElement fieldAmount;
 
@@ -28,6 +31,9 @@ public class IncomeExpensesView extends BasePage {
 
     @FindBy(id = "new-name")
     private WebElement fieldNewExpenseName;
+
+    @FindBy(id = "new-name")
+    private WebElement fieldNewIncomeName;
 
     @FindBy(id = "dateSpace")
     private WebElement fieldDate;
@@ -60,6 +66,10 @@ public class IncomeExpensesView extends BasePage {
         Events.click(registeredExpenseOption);
     }
 
+    public void selectCreatedIncome() {
+        Events.click(registeredIncomeOption);
+    }
+
     public void fillAmountInput(String amount) {
         Events.fillField(fieldAmount, amount);
     }
@@ -86,6 +96,12 @@ public class IncomeExpensesView extends BasePage {
         return Events.isVisibleWebElement(transactionError);
     }
 
+    public boolean modifyErrorIsVisible() {
+        WebElement modifyError =  webDriver.findElement(By.id("changeFail"));
+
+        return Events.isVisibleWebElement(modifyError);
+    }
+
     public boolean amountInputIsEmpty() {
         return fieldAmount.getAttribute("value").isEmpty();
     }
@@ -101,9 +117,16 @@ public class IncomeExpensesView extends BasePage {
     public void clickExpenseCategoryButton() {
         Events.selectByText(newCategorySelectField, "Expenses");   }
 
+    public void clickIncomeCategoryButton() {
+        Events.selectByText(newCategorySelectField, "Others");   }
+
 
     public void fillNewExpenseName(String newExpenseName){
         Events.fillField(fieldNewExpenseName, newExpenseName);
+    }
+
+    public void fillNewIncomeName(String newIncomeName){
+        Events.fillField(fieldNewIncomeName, newIncomeName);
     }
 
     public void clickRegisterModify() {

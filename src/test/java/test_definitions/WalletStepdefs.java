@@ -93,7 +93,7 @@ public class WalletStepdefs {
 
     @And("^click 'Income' button$")
     public void clickIncomeButton() {
-        accountManager.clickIncomeButton();
+        incomeExpensesView = accountMainMenu.clickIncomeButton();
     }
 
     @And("^click 'Income' button on 'Account Main Menu'$")
@@ -324,5 +324,35 @@ public class WalletStepdefs {
     @And("^click 'Register Changes' button on 'Expenses View'$")
     public void clickRegisterChangesButtonOnExpensesView() {
         incomeExpensesView.clickRegisterModify();
+    }
+
+    @Then("^select income registered on 'Income View'$")
+    public void selectIncomeRegisteredOnIncomeView() {
+        incomeExpensesView.selectCreatedIncome();
+    }
+
+    @Then("^fill \"([^\"]*)\" name input on 'Income View'$")
+    public void fillNameInputOnIncomeView(String arg0) throws Throwable {
+        incomeExpensesView.fillNewIncomeName(arg0);
+    }
+
+    @Then("^select 'Others' different Income category on 'Income View'$")
+    public void selectOthersDifferentIncomeCategoryOnIncomeView() {
+        incomeExpensesView.clickIncomeCategoryButton();
+    }
+
+    @And("^fill new \"([^\"]*)\" amount modify income on 'Income View'$")
+    public void fillNewAmountModifyIncomeOnIncomeView(String arg0) throws Throwable {
+        incomeExpensesView.fillNewAmountInput(arg0);
+    }
+
+    @And("^click 'Register Changes' button on 'Income View'$")
+    public void clickRegisterChangesButtonOnIncomeView() {
+        incomeExpensesView.clickRegisterModify();
+    }
+
+    @And("^check 'error message' display$")
+    public void checkErrorMessageDisplay() {
+        Assert.assertTrue(incomeExpensesView.modifyErrorIsVisible());
     }
 }
