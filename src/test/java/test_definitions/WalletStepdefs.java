@@ -7,6 +7,7 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.wallet.*;
+
 public class WalletStepdefs {
 
     private final static String EXAMPLE_ACCOUNT_NAME = "My new account";
@@ -24,8 +25,8 @@ public class WalletStepdefs {
     private IncomeExpensesView incomeExpensesView;
 
     private GeneralReports generalReports;
-    private ReportPage reportPage;
     private TransferPage transferPage;
+    private ReportPage reportPage;
 
     @Given("^Account manager is loaded$")
     public void accountManagerIsLoaded() {
@@ -64,41 +65,6 @@ public class WalletStepdefs {
         Assert.assertTrue(generalReports.titleIsVisible());
     }
 
-    @Given("^Account creator is loaded$")
-    public void accountCreatorIsLoaded() {
-        accountManager=LoadPage.loadAccountManager();
-    }
-
-    @And("^fill 'Account name' input with first account$")
-    public void fillAccountNameInputWithFirstAccount() {
-        accountManager.fillAccountNameField("First Account");
-    }
-
-    @And("^click 'Add' button for first account$")
-    public void clickAddButtonForFirstAccount() {
-        accountManager.clickAddAccountButton();
-    }
-
-    @And("^fill 'Account name' input with second account$")
-    public void fillAccountNameInputWithSecondAccount() {
-        accountManager.fillAccountNameField("Second Account");
-    }
-
-    @And("^click 'Add' button for second account$")
-    public void clickAddButtonForSecondAccount() {
-        accountManager.clickAddAccountButton();
-    }
-
-    @Then("^select first account$")
-    public void selectFirstAccount() {
-        accountManager.selectAccount("First Account");
-    }
-
-    @And("^click 'Income' button$")
-    public void clickIncomeButton() {
-        accountManager.clickIncomeButton();
-    }
-
     @And("^click 'Income' button on 'Account Main Menu'$")
     public void clickIncomeButtonOnAccountMainMenu() {
         incomeExpensesView = accountMainMenu.clickIncomeButton();
@@ -107,136 +73,6 @@ public class WalletStepdefs {
     @And("^click 'Expenses' button on 'Account Main Menu'$")
     public void clickExpensesButtonOnAccountMainMenu() {
         incomeExpensesView = accountMainMenu.clickExpensesButton();
-    }
-
-    @And("^fill 'Enter Name' input$")
-    public void fillEnterNameInput() {
-        accountManager.fillName("Salario Junio");
-    }
-
-    @And("^fill 'Category' field$")
-    public void fillCategoryField() {
-        accountManager.selectSalaryIncome();
-    }
-
-    @And("^fill 'Enter Amount' input$")
-    public void fillEnterAmountInput() {
-        accountManager.fillAmount("1000");
-    }
-
-    @And("^fill 'mm/dd/yyyy' input$")
-    public void fillMmDdYyyyInput() {
-        accountManager.fillDate("01/02/2019");
-    }
-
-    @Then("^click 'Register Transaction' button$")
-    public void clickRegisterTransactionButton() {
-        accountManager.registerTransaction();
-    }
-
-    @Then("^click 'Exit' Button$")
-    public void clickExitButton() {
-        accountManager.clickExitButton();
-    }
-
-    @And("^Then select first account again$")
-    public void thenSelectFirstAccountAgain() {
-        accountManager.selectAccount("First Account");
-    }
-
-    @And("^click 'Transfer' button$")
-    public void clickTransferButton() {
-        transferPage=accountManager.clickTransferButton();
-    }
-
-    @And("^select 'Second Account' option$")
-    public void selectSecondAccountOption() {
-        transferPage.selectAccountDestination();
-    }
-
-    @And("^fill \"([^\"]*)\" on field amount$")
-    public void fillOnFieldAmount(String amount) {
-        accountManager.clearFieldAmount();
-        accountManager.fillAmountTransfer(amount);
-
-    public void fillOnFieldAmount(String amount) throws Throwable {
-        transferPage.clearFieldAmount();
-        transferPage.fillAmountTransfer(amount);
-    }
-
-    @And("^Transfer button is visible$")
-    public void transferButtonIsVisible() {
-        Assert.assertTrue(transferPage.transferButtonIsVisible());
-    }
-
-    @Then("^click 'Transfer' button on transfer page$")
-    public void clickTransferButtonOnTransferPage() {
-        transferPage.clickTransferTransactionButton();
-    }
-
-    @And("^click 'Report' button$")
-    public void clickReportButton() {
-        reportPage=accountManager.clickReportButton();
-    }
-
-    @And("^ReporType ComboBox is visible$")
-    public void reportypeComboBoxIsVisible() {
-        Assert.assertTrue(reportPage.reportTypeComboBoxIsVisible());
-    }
-
-    @And("^select 'By date' option$")
-    public void selectByDateOption() {
-        reportPage.selectDateReport();
-    }
-
-    @And("^fill 'mm/dd/yyyy' start date input$")
-    public void fillMmDdYyyyStartDateInput() {
-        reportPage.fillStartDateReport("01/01/2019");
-    }
-
-    @And("^fill 'mm/dd/yyyy' end date input$")
-    public void fillMmDdYyyyEndDateInput() {
-        reportPage.fillEndDateReport("12/01/2019");
-    }
-
-    @And("^StartDate field is visible$")
-    public void startdateFieldIsVisible() {
-        Assert.assertTrue(reportPage.startDateFieldIsVisible());
-    }
-
-    @And("^EndtDate field is visible$")
-    public void endtdateFieldIsVisible() {
-        Assert.assertTrue(reportPage.endDateFieldIsVisible());
-    }
-
-    @And("^Report button is visible$")
-    public void reportButtonIsVisible() {
-        Assert.assertTrue(reportPage.reportButtonIsVisible());
-    }
-
-    @And("^ReporType ComboBox is not visible$")
-    public void reportypeComboBoxIsNotVisible() {
-        Assert.assertFalse(reportPage.reportTypeComboBoxIsVisible());
-    }
-
-    @Then("^click 'Show Report' button$")
-    public void clickShowReportButton() {
-        reportPage.clickShowReportButton();
-    }
-
-    @And("^select 'By category' option$")
-    public void selectByCategoryOption() {
-        reportPage.selectCategoryReport();
-    }
-
-    @And("^fill \"([^\"]*)\" start date input$")
-    public void fillStartDateInput(String arg0) throws Throwable {
-        reportPage.fillStartDateReport(arg0);
-    }
-
-    @And("^fill \"([^\"]*)\" end date input$")
-    public void fillEndDateInput(String arg0) throws Throwable {
-        reportPage.fillEndDateReport(arg0);
     }
 
     @Given("^Browser is loaded$")
@@ -310,11 +146,6 @@ public class WalletStepdefs {
         accountMainMenu = accountManager.selectAccount(accountName);
     }
 
-    @Then("^fill 'Enter Name' input on 'Income Expenses View'$")
-    public void fillEnterNameInputOnIncomeExpensesView() {
-
-    }
-
     @Then("^fill \"([^\"]*)\" in 'Enter Name' input on 'Income Expenses View'$")
     public void fillInEnterNameInputOnIncomeExpensesView(String expenseName) {
         incomeExpensesView.fillFieldName(expenseName);
@@ -382,7 +213,7 @@ public class WalletStepdefs {
 
     @Then("^Click 'Report' button in 'Account Main Menu' Page$")
     public void clickReportButtonInAccountMainMenuPage() {
-        reportsPage = accountMainMenu.clickReportButton();
+        reportPage = accountMainMenu.clickReportButton();
     }
 
     @And("^Click 'Report Type' Selector in 'Report' Page$")
@@ -427,8 +258,8 @@ public class WalletStepdefs {
 
     @Then("^Get length of 'Account List' List in 'Account Creator' Page$")
     public void getLengthOfAccountListListInAccountCreatorPage() {
-        
-          lengthOfAccountListBefore = accountCreator.getAccountListLength();
+
+        lengthOfAccountListBefore = accountCreator.getAccountListLength();
         System.out.println(lengthOfAccountListBefore);
 
     }
@@ -457,6 +288,84 @@ public class WalletStepdefs {
     public void reportButtonIsVisibleOnAccountMainMenu() {
         Assert.assertTrue(accountMainMenu.reportButtonIsVisible());
     }
+
+    //TransferFeature
+
+    @And("^go back home in 'Income'$")
+    public void goBackHomeInIncome() {
+        incomeExpensesView.clickMainMenu();
     }
 
+    @And("^fill \"([^\"]*)\" 'Enter Name' input on 'Income View'$")
+    public void fillEnterNameInputOnIncomeView(String nameIncome) throws Throwable {
+        incomeExpensesView.fillFieldName(nameIncome);
+    }
+
+    @And("^click 'Transfer' button on 'Account Main Menu'$")
+    public void clickTransferButtonOnAccountMainMenu() {
+        transferPage = accountMainMenu.clickTransferButton();
+    }
+
+    @And("^select 'Second Account' option$")
+    public void selectSecondAccountOption() {
+        transferPage.selectAccountDestination();
+    }
+
+    @And("^fill \"([^\"]*)\" on field amount$")
+    public void fillOnFieldAmount(String transferAmount) throws Throwable {
+        transferPage.clearFieldAmount();
+        transferPage.fillAmountTransfer(transferAmount);
+    }
+
+    @And("^Transfer button is visible$")
+    public void transferButtonIsVisible() {
+        transferPage.transferButtonIsVisible();
+    }
+
+    @Then("^click 'Transfer' button on transfer page$")
+    public void clickTransferButtonOnTransferPage() {
+        transferPage.clickTransferTransactionButton();
+    }
+
+    //Report Feature
+
+    @And("^select 'By date' option$")
+    public void selectByDateOption() {
+        reportPage.selectDateReport();
+    }
+
+    @And("^StartDate field is visible$")
+    public void startdateFieldIsVisible() {
+        reportPage.startDateFieldIsVisible();
+    }
+
+    @And("^EndtDate field is visible$")
+    public void endtdateFieldIsVisible() {
+        reportPage.endDateFieldIsVisible();
+    }
+
+    @And("^fill \"([^\"]*)\" start date input$")
+    public void fillStartDateInput(String startDate) throws Throwable {
+        reportPage.fillStartDateReport(startDate);
+    }
+
+    @And("^fill \"([^\"]*)\" end date input$")
+    public void fillEndDateInput(String endDate) throws Throwable {
+        reportPage.fillEndDateReport(endDate);
+    }
+
+    @And("^Report button is visible$")
+    public void reportButtonIsVisible() {
+        reportPage.reportButtonIsVisible();
+    }
+
+    @Then("^click 'Show Report' button$")
+    public void clickShowReportButton() {
+        reportPage.clickShowReportButton();
+    }
+
+    @And("^select 'By category' option$")
+    public void selectByCategoryOption() {
+        reportPage.selectCategoryReport();
+    }
 }

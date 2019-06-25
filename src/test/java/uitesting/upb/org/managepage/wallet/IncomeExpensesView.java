@@ -84,5 +84,4 @@ public class IncomeExpensesView extends BasePage {
     public void clickMainMenu() {
         Events.click(accountmainmenu);
     }
-
 }
