@@ -19,10 +19,16 @@ Feature: Modify an existing expense
       And click 'Expenses' button on 'Account Main Menu'
       And fill 'Enter Name' input
       And select 'Category' field on 'Income Expenses View'
-      And fill 'Enter Amount' input
+      And fill 'Enter Expense Amount' input
       And fill 'mm/dd/yyyy' input
       Then click 'Register Transaction' button
       Then select expense registered on 'Expense View'
+      Then fill "New name" name input on 'Expenses View'
+      Then select 'Expenses' different Expense category on 'Expenses View'
+      And fill 'mm/dd/yyyy' new date input on 'Expenses View'
+      And fill new "222" amount modify expense on 'Expenses View'
+      And click 'Register Changes' button on 'Expenses View'
+
 
   Scenario: Can not enter letters in the modify amount field
     And fill "abc" 'Enter new amount' input on 'Income Expenses View'

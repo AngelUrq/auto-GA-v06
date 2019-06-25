@@ -1,12 +1,17 @@
 package test_definitions;
 
+import cucumber.api.PendingException;
+import cucumber.api.Transform;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.testng.Assert;
+import uitesting.upb.org.handlecucumber.StringListTransformer;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.wallet.*;
+
+import java.util.List;
 
 public class WalletStepdefs {
 
@@ -27,6 +32,8 @@ public class WalletStepdefs {
     private GeneralReports generalReports;
     private TransferPage transferPage;
     private ReportPage reportPage;
+
+    private int lengthOfAccountListBefore;
 
     @Given("^Account manager is loaded$")
     public void accountManagerIsLoaded() {
@@ -65,6 +72,11 @@ public class WalletStepdefs {
         Assert.assertTrue(generalReports.titleIsVisible());
     }
 
+    @And("^click 'Income' button$")
+    public void clickIncomeButton() {
+        incomeExpensesView = accountMainMenu.clickIncomeButton();
+    }
+
     @And("^click 'Income' button on 'Account Main Menu'$")
     public void clickIncomeButtonOnAccountMainMenu() {
         incomeExpensesView = accountMainMenu.clickIncomeButton();
@@ -81,9 +93,10 @@ public class WalletStepdefs {
         accountCreator = LoadPage.loadAccountCreator();
     }
 
-    @Then("^Fill 'Account Name' text field in 'Account Creator' page$")
-    public void fillAccountNameTextFieldInAccountCreator() {
-        accountCreator.writeInAccountTextField("Mateo");
+    @Then("^Fill \"([^\"]*)\" text field in 'Account Creator' page$")
+    public void fillTextFieldInAccountCreatorPage(String accountName)  {
+        accountCreator.writeInAccountTextField(accountName);
+
     }
 
     @And("^Click 'Add' button in 'Account Creator' page$")
@@ -100,7 +113,7 @@ public class WalletStepdefs {
     @When("^'Navbar' is loaded in 'Nav Bar' page$")
     public void navbarIsLoaded() {
         boolean isVisible = navBar.navBarIsVisible();
-        org.junit.Assert.assertTrue(isVisible);
+        Assert.assertTrue(isVisible);
     }
 
     @Then("^Click 'Account Settings' button in 'NavBar' page$")
@@ -115,12 +128,21 @@ public class WalletStepdefs {
         Assert.assertTrue(isVisible);
     }
 
+    @Then("^Fill 'Account Name' text field with \"([^\"]*)\" in 'Account Settings' page$")
+    public void fillAccountNameTextFieldWithInAccountSettingsPage(@Transform(StringListTransformer.class) String[] names)  {
+        accountSettings.clearChangeAccountNameTextField();
+       for(int i = 0 ; i < names.length; i++){
+           accountSettings.writeInChangeAccountNameTextField(names[i]);
+       }
+
+    }
+
     @Then("^Click 'Delete' button in Account Settings$")
     public void clickDeleteButtonInAccountSettings() {
         accountSettings.clickDeleteAccountButton();
     }
 
-    @Then("^Fill 'Account Name' text field with \"([^\"]*)\" in 'Account Settings' page$")
+    @Then("^Fil 'Account Name' text field with \"([^\"]*)\" in 'Account Settings' page$")
     public void fillAccountNameTextFieldWithInAccountSettings(String nuevoNombre) {
         accountSettings.clearChangeAccountNameTextField();
         accountSettings.writeInChangeAccountNameTextField(nuevoNombre);
@@ -246,22 +268,14 @@ public class WalletStepdefs {
         Assert.assertTrue(accountCreator.isAccountNameTextFieldEmpty());
     }
 
-
-    int lengthOfAccountListBefore;
-
     @And("^List 'Account List' length should not change in 'Account Creator Page'$")
     public void listAccountListShouldHaveTheSameLength() {
-
         Assert.assertEquals(lengthOfAccountListBefore,accountCreator.getAccountListLength());
-
     }
 
     @Then("^Get length of 'Account List' List in 'Account Creator' Page$")
     public void getLengthOfAccountListListInAccountCreatorPage() {
-
-        lengthOfAccountListBefore = accountCreator.getAccountListLength();
-        System.out.println(lengthOfAccountListBefore);
-
+          lengthOfAccountListBefore = accountCreator.getAccountListLength();
     }
 
     @And("^Click 'Home Page' button in 'NavBar' page$")
@@ -367,5 +381,93 @@ public class WalletStepdefs {
     @And("^select 'By category' option$")
     public void selectByCategoryOption() {
         reportPage.selectCategoryReport();
+    }
+
+    @When("^'Navbar' is loaded in 'Income' page$")
+    public void navbarIsLoadedInIncomePage() {
+        navBar = new NavBar();
+    }
+
+    @Then("^Click 'Personal Wallet' Button in 'NavBar' Page$")
+    public void clickPersonalWalletButtonInNavBarPage() {
+       accountMainMenu = navBar.clickPersonalWalletButton();
+    }
+
+
+    @Then("^Click 'General Account' button in 'Account Creator' page$")
+    public void clickGeneralAccountButtonInAccountCreatorPage() {
+        navBar = accountCreator.clickAccountGeneralButton();
+    }
+
+    @Then("^Verify button 'Account Settings' is not visible in 'NavBar' Page$")
+    public void verifyButtonAccountSettingsIsNotVisibleInNavBarPage() {
+        Assert.assertTrue(navBar.isSettingsButtonVisible());
+    }
+
+    @Then("^Click 'Account Settings' button in 'Reports Navbar' Page$")
+    public void clickAccountSettingsButtonInReportsNavbarPage() {
+        NavBar nav = new NavBar();
+        accountSettings = nav.clickAccountSettings();
+    }
+
+    @Then("^Verify the name \"([^\"]*)\" wasn't added to an account in 'Account Creator' Page$")
+    public void verifyTheNameWasnTAddedToAnAccountInAccountCreatorPage(String name) {
+        accountCreator = new AccountCreator();
+        Assert.assertNull(accountCreator.accountButtonExists(name));
+    }
+
+    @Then("^fill \"([^\"]*)\" name input on 'Expenses View'$")
+    public void fillNameInputOnExpensesView(String arg0)  {
+        incomeExpensesView.fillNewExpenseName(arg0);
+    }
+
+    @Then("^select 'Expenses' different Expense category on 'Expenses View'$")
+    public void selectExpensesDifferentExpenseCategoryOnExpensesView() {
+        incomeExpensesView.clickExpenseCategoryButton();
+    }
+
+    @And("^fill 'mm/dd/yyyy' new date input on 'Expenses View'$")
+    public void fillMmDdYyyyNewDateInputOnExpensesView() {
+        incomeExpensesView.fillNewExpenseDateInput("11/02/2019");
+    }
+
+    @And("^fill new \"([^\"]*)\" amount modify expense on 'Expenses View'$")
+    public void fillNewAmountModifyExpenseOnExpensesView(String modifyExpense) {
+        incomeExpensesView.fillNewAmountInput(modifyExpense);
+    }
+
+    @And("^click 'Register Changes' button on 'Expenses View'$")
+    public void clickRegisterChangesButtonOnExpensesView() {
+        incomeExpensesView.clickRegisterModify();
+    }
+
+    @Then("^select income registered on 'Income View'$")
+    public void selectIncomeRegisteredOnIncomeView() {
+        incomeExpensesView.selectCreatedIncome();
+    }
+
+    @Then("^fill \"([^\"]*)\" name input on 'Income View'$")
+    public void fillNameInputOnIncomeView(String arg0) throws Throwable {
+        incomeExpensesView.fillNewIncomeName(arg0);
+    }
+
+    @Then("^select 'Others' different Income category on 'Income View'$")
+    public void selectOthersDifferentIncomeCategoryOnIncomeView() {
+        incomeExpensesView.clickIncomeCategoryButton();
+    }
+
+    @And("^fill new \"([^\"]*)\" amount modify income on 'Income View'$")
+    public void fillNewAmountModifyIncomeOnIncomeView(String arg0) throws Throwable {
+        incomeExpensesView.fillNewAmountInput(arg0);
+    }
+
+    @And("^click 'Register Changes' button on 'Income View'$")
+    public void clickRegisterChangesButtonOnIncomeView() {
+        incomeExpensesView.clickRegisterModify();
+    }
+
+    @And("^check 'error message' display$")
+    public void checkErrorMessageDisplay() {
+        Assert.assertTrue(incomeExpensesView.modifyErrorIsVisible());
     }
 }
