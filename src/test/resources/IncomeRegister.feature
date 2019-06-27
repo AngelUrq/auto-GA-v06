@@ -7,37 +7,39 @@ Feature: Register a new Income
     And click 'Income' button
 
   Scenario: Create a new Income
-    And fill 'Enter Name' input
-    And fill 'Category' field
-    And fill 'Enter Amount' input
-    And fill 'mm/dd/yyyy' input
-    Then click 'Register Transaction' button
+    And fill "Nombre Income" input on 'IncomeExpenses Page'
+    And fill 'Category' field on 'Income Page'
+    And fill arbitrary "1000" amount on 'IncomeExpenses Page'
+    And fill arbitrary "02/05/2019" date on 'IncomeExpenses Page'
+    Then click 'Register Transaction' button on 'IncomeExpenses Page'
+    And verify if 'Transaction' has been registered on 'Income Page'
+
 
   Scenario: No fill on 'Name' input
-    And fill 'Category' field
-    And fill 'Enter Amount' input
-    And fill 'mm/dd/yyyy' input
-    Then click 'Register Transaction' button
-    And 'Transaction error' is visible
+    And fill 'Category' field on 'Income Page'
+    And fill arbitrary "1000" amount on 'IncomeExpenses Page'
+    And fill arbitrary "02/05/2019" date on 'IncomeExpenses Page'
+    Then click 'Register Transaction' button on 'IncomeExpenses Page'
+    And 'Transaction error' is visible on 'IncomeExpenses Page'
 
   Scenario: No select on 'Category' Selector
-      And fill 'Enter Name' input
-      And fill 'Enter Amount' input
-      And fill 'mm/dd/yyyy' input
-      Then click 'Register Transaction' button
-      And 'Transaction error' is visible
+    And fill "Nombre Income" input on 'IncomeExpenses Page'
+    And fill arbitrary "1000" amount on 'IncomeExpenses Page'
+    And fill arbitrary "02/05/2019" date on 'IncomeExpenses Page'
+    Then click 'Register Transaction' button on 'IncomeExpenses Page'
+    And 'Transaction error' is visible on 'IncomeExpenses Page'
 
       Scenario: No fill 'Amount' input
-        And fill 'Enter Name' input
-        And fill 'Category' field
-        And fill 'mm/dd/yyyy' input
-        Then click 'Register Transaction' button
-        And 'Transaction error' is visible
+        And fill "Nombre Income" input on 'IncomeExpenses Page'
+        And fill 'Category' field on 'Income Page'
+        And fill arbitrary "02/05/2019" date on 'IncomeExpenses Page'
+        Then click 'Register Transaction' button on 'IncomeExpenses Page'
+        And 'Transaction error' is visible on 'IncomeExpenses Page'
 
         Scenario: No select 'Date' selector
-          And fill 'Enter Name' input
-          And fill 'Category' field
-          And fill 'Enter Amount' input
-          Then click 'Register Transaction' button
-          And 'Transaction error' is visible
+          And fill "Nombre Income" input on 'IncomeExpenses Page'
+          And fill 'Category' field on 'Income Page'
+          And fill arbitrary "1000" amount on 'IncomeExpenses Page'
+          Then click 'Register Transaction' button on 'IncomeExpenses Page'
+          And 'Transaction error' is visible on 'IncomeExpenses Page'
 
