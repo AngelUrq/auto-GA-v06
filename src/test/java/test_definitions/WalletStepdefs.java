@@ -193,7 +193,7 @@ public class WalletStepdefs {
         incomeExpensesView.clickTransactionButton();
     }
 
-    @Then("^'Transaction error' is visible$")
+    @Then("^'Transaction error' is visible on 'IncomeExpenses Page'$")
     public void transactionErrorIsVisible() {
         Assert.assertTrue(incomeExpensesView.transactionErrorIsVisible());
     }
@@ -469,5 +469,68 @@ public class WalletStepdefs {
     @And("^check 'error message' display$")
     public void checkErrorMessageDisplay() {
         Assert.assertTrue(incomeExpensesView.modifyErrorIsVisible());
+        }
+
+
+
+    @And("^fill \"([^\"]*)\" input on 'IncomeExpenses Page'$")
+    public void fillInput(String arg0) throws Throwable {
+        incomeExpensesView.fillFieldName(arg0);
+    }
+
+    @And("^fill 'Category' field on 'Income Page'$")
+    public void fillCategoryField() {
+        incomeExpensesView.clickIncomeRegisterCategoryButton();
+    }
+
+
+    @And("^fill arbitrary \"([^\"]*)\" amount on 'IncomeExpenses Page'$")
+    public void fillAmountOnIncomePage(String arg0) throws Throwable {
+        incomeExpensesView.fillAmountInput(arg0);
+    }
+
+
+    @And("^fill arbitrary \"([^\"]*)\" date on 'IncomeExpenses Page'$")
+    public void fillArbitraryDateOnIncomePage(String arg0) throws Throwable {
+        incomeExpensesView.fillDateInput(arg0);
+    }
+
+    @Then("^click 'Register Transaction' button on 'IncomeExpenses Page'$")
+    public void clickRegisterTransactionButtonOnIncomePage() {
+        incomeExpensesView.clickTransactionButton();
+    }
+
+    @And("^verify if 'Transaction' has been registered on 'Income Page'$")
+    public void verifyIfTransactionHasBeenRegisteredOnIncomePage() {
+        incomeExpensesView.completeIncomeTransactionIsVisible();
+    }
+
+    @Then("^clear 'Amount' input on 'Income Page'$")
+    public void clearAmountInputOnIncomePage() {
+        incomeExpensesView.clearAmountFieldIncome();
+    }
+
+
+    @And("^fill \"([^\"]*)\" new date input on 'Income View'$")
+    public void fillNewDateInputOnIncomeView(String arg0) throws Throwable {
+        incomeExpensesView.fillNewExpenseDateInput(arg0);
+    }
+
+    @And("^click 'Register Category' button on 'IncomeExpenses Page'$")
+    public void clickRegisterCategoryButtonOnIncomeExpensesPage() {
+        incomeExpensesView.clickRegisterCategoryButton();
+
+    }
+
+    @Then("^fill category \"([^\"]*)\" input on 'IncomeExpenses Page'$")
+    public void fillCategoryInputOnIncomeExpensesPage(String arg0) throws Throwable {
+        incomeExpensesView.fillNewCategoryName(arg0);
+    }
+
+    @And("^verify 'Registered Category' message on 'IncomeExpenses Page'$")
+    public void verifyRegisteredCategoryMessageOnIncomeExpensesPage() {
+        incomeExpensesView.createdCategoryMessageIsVisible();
     }
 }
+
+
