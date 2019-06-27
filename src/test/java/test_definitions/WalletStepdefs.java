@@ -1,11 +1,11 @@
 package test_definitions;
 
-import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import uitesting.upb.org.handlecucumber.StringListTransformer;
@@ -213,13 +213,12 @@ public class WalletStepdefs {
         Assert.assertTrue(isVisible);
     }
 
-    @Then("^Fill 'Account Name' text field with \"([^\"]*)\" in 'Account Settings' page$")
+    @Then("^Fill 'Account Name' text field with \"([^\"]*)\" in 'Account Settings' page1$")
     public void fillAccountNameTextFieldWithInAccountSettingsPage(@Transform(StringListTransformer.class) String[] names)  {
         accountSettings.clearChangeAccountNameTextField();
-       for(int i = 0 ; i < names.length; i++){
-           accountSettings.writeInChangeAccountNameTextField(names[i]);
-       }
-
+        for(int i = 0 ; i < names.length; i++){
+            accountSettings.writeInChangeAccountNameTextField(names[i]);
+        }
     }
 
     @Then("^Click 'Delete' button in Account Settings$")
@@ -236,6 +235,9 @@ public class WalletStepdefs {
     @And("^Click 'Change name' button in 'Account Settings' page$")
     public void clickChangeNameButtonInAccountSettings() {
         accountSettings.clickChangeNameButton();
+        Assert.assertFalse(accountSettings.isValidAccountEmptyName());
+
+
     }
 
     @Then("^'Add' button is visible on 'Account Creator'$")
@@ -402,12 +404,14 @@ public class WalletStepdefs {
 
     @Then("^Click 'General Account' button in 'Account Creator' page$")
     public void clickGeneralAccountButtonInAccountCreatorPage() {
-        navBar = accountCreator.clickAccountGeneralButton();
+         accountCreator.clickAccountGeneralButton();
+         navBar = new NavBar();
     }
 
     @Then("^Verify button 'Account Settings' is not visible in 'NavBar' Page$")
     public void verifyButtonAccountSettingsIsNotVisibleInNavBarPage() {
-        Assert.assertTrue(navBar.isSettingsButtonVisible());
+        WebElement test= navBar.isSettingsButtonVisible();
+        Assert.assertNull(test);
     }
 
     @Then("^Click 'Account Settings' button in 'Reports Navbar' Page$")

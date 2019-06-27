@@ -23,9 +23,6 @@ public class AccountSettings extends BasePage {
     private  WebElement accountInfoTitle;
 
 
-
-
-
     public void clickChangeNameButton() {
         Events.click(changeNameButton);
     }
@@ -46,7 +43,6 @@ public class AccountSettings extends BasePage {
         return Events.isVisibleWebElement(changeAccountNameTextField);
     }
 
-
     public boolean isVisibleChangeAccountNameTextField(){
         return Events.isVisibleWebElement(changeAccountNameTextField);
     }
@@ -63,4 +59,7 @@ public class AccountSettings extends BasePage {
         return  Events.isVisibleWebElement(accountInfoTitle);
     }
 
+    public boolean isValidAccountEmptyName() {
+        return Events.isVisibleWebElement(changeNameButton);
+    }
 }

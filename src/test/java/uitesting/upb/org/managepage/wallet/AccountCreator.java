@@ -24,9 +24,8 @@ public class AccountCreator extends BasePage {
     @FindBy(xpath = "//*[@id='general']")
     private  WebElement general;
 
-    public NavBar clickAccountGeneralButton(){
+    public void clickAccountGeneralButton(){
         Events.click(general);
-        return new NavBar();
     }
     public void clickAddAccountButton() {
         Events.click(addAccountButton);

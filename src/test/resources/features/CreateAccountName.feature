@@ -18,15 +18,14 @@ Feature: Crear cuenta y asignarle un nombre
 
 
     Examples:
-
       |AccountName|
-      |New Account|
       |Mateo4711  |
 
     Scenario Outline: Verify account with empty name cannot be added in 'Account Creator' Page
 
 
       And Fill "<AccountName>" text field in 'Account Creator' page
+      Then Get length of 'Account List' List in 'Account Creator' Page
       And Click 'Add' button in 'Account Creator' page
       Then Text field 'Account Name' should be empty in  'Account Creator' Page
       And List 'Account List' length should not change in 'Account Creator Page'
@@ -42,6 +41,7 @@ Feature: Crear cuenta y asignarle un nombre
 
 
     And Fill "<AccountName>" text field in 'Account Creator' page
+    Then Get length of 'Account List' List in 'Account Creator' Page
     And Click 'Add' button in 'Account Creator' page
     Then Text field 'Account Name' should be empty in  'Account Creator' Page
     And List 'Account List' length should not change in 'Account Creator Page'
@@ -56,6 +56,7 @@ Feature: Crear cuenta y asignarle un nombre
 
 
     And Fill "  " text field in 'Account Creator' page
+    Then Get length of 'Account List' List in 'Account Creator' Page
     And Click 'Add' button in 'Account Creator' page
     Then Text field 'Account Name' should be empty in  'Account Creator' Page
     And List 'Account List' length should not change in 'Account Creator Page'
@@ -71,6 +72,7 @@ Feature: Crear cuenta y asignarle un nombre
 
 
     And Fill "<AccountName>" text field in 'Account Creator' page
+    Then Get length of 'Account List' List in 'Account Creator' Page
     And Click 'Add' button in 'Account Creator' page
     Then Text field 'Account Name' should be empty in  'Account Creator' Page
     And List 'Account List' length should not change in 'Account Creator Page'
