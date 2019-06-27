@@ -419,6 +419,8 @@ public class WalletStepdefs {
     public void verifyTheNameWasnTAddedToAnAccountInAccountCreatorPage(String name) {
         accountCreator = new AccountCreator();
         Assert.assertNull(accountCreator.accountButtonExists(name));
+    }
+
     @Then("^fill \"([^\"]*)\" name input on 'Expenses View'$")
     public void fillNameInputOnExpensesView(String arg0)  {
         incomeExpensesView.fillNewExpenseName(arg0);
@@ -477,5 +479,7 @@ public class WalletStepdefs {
     @And("^check 'error message' display$")
     public void checkErrorMessageDisplay() {
         Assert.assertTrue(incomeExpensesView.modifyErrorIsVisible());
+        }
     }
-}
+
+
