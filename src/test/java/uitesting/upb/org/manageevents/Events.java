@@ -33,6 +33,7 @@ public class Events {
     public static boolean isVisibleWebElement(WebElement webElement) {
         return webElement.isDisplayed();
     }
+
     public static void clearFieldText(WebElement webElement){
         webElement.clear();
     }

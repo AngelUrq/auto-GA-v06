@@ -3,17 +3,29 @@ import net.masterthought.cucumber.Configuration
 
 import net.masterthought.cucumber.ReportBuilder
 
+<<<<<<< HEAD
 apply plugin: 'java'
+=======
+
+apply plugin :'java'
+>>>>>>> 528e7227fa9e062a13df4cd8c6f8ebb4c266ff0a
 
 group 'gestioncalidad'
 version '1.0.1'
 
 sourceCompatibility = 1.8
 
+
 repositories {
     mavenCentral()
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 528e7227fa9e062a13df4cd8c6f8ebb4c266ff0a
 buildscript{
     repositories{
         jcenter()
@@ -26,8 +38,17 @@ buildscript{
 }
 
 
+<<<<<<< HEAD
 dependencies {
    // testCompile group: 'junit', name: 'junit', version: '4.12'
+=======
+
+dependencies {
+    //testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+
+>>>>>>> 528e7227fa9e062a13df4cd8c6f8ebb4c266ff0a
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
@@ -36,7 +57,12 @@ dependencies {
     compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
 
     // https://mvnrepository.com/artifact/org.testng/testng
-    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+    //testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+
+    // cucumber-testng
+    testCompile group: 'info.cukes', name: 'cucumber-testng', version: '1.2.5'
+    testCompile group: 'info.cukes', name: 'cucumber-picocontainer', version: '1.2.5'
+
 
     // cucumber-java
     compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
@@ -137,3 +163,19 @@ def generateReport(String pathCucumber, String pathReport){
     ReportBuilder reportBuilder = new ReportBuilder(jsonFiles, configuration)
     reportBuilder.generateReports()
 }
+
+task tarea1{
+    println 'tarea 1'
+}
+
+task tarea2(dependsOn: tarea1) {
+    doLast {
+        println 'tarea 2'
+        }
+    }
+
+    task tarea3(dependsOn: tarea2) {
+        println 'tarea 3'
+    }
+
+
