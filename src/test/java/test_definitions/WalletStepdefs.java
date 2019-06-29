@@ -12,7 +12,6 @@ import uitesting.upb.org.handlecucumber.StringListTransformer;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.wallet.*;
 
-import java.util.List;
 
 public class WalletStepdefs {
 
