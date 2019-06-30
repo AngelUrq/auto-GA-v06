@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import uitesting.upb.org.manageevents.Events;
 import uitesting.upb.org.managepage.BasePage;
 
+import java.awt.*;
+
 public class IncomeExpensesView extends BasePage {
 
     @FindBy(id = "name")
@@ -15,7 +17,7 @@ public class IncomeExpensesView extends BasePage {
     private WebElement newCategorySelectField;
 
     @FindBy(id = "category")
-    private WebElement incomeCategotySelectField;
+    private WebElement incomeCategorySelectField;
 
     @FindBy(id = "categoryRegister")
     private WebElement nweCategotyRegisterField;
@@ -138,7 +140,7 @@ public class IncomeExpensesView extends BasePage {
         Events.selectByText(newCategorySelectField, "Others");   }
 
     public void clickIncomeRegisterCategoryButton() {
-        Events.selectByText(incomeCategotySelectField, "Salary");   }
+        Events.selectByText(incomeCategorySelectField, "Salary");   }
 
 
     public void fillNewExpenseName(String newExpenseName){
@@ -161,6 +163,22 @@ public class IncomeExpensesView extends BasePage {
 
     public void clearAmountFieldIncome(){
         Events.clearField(fieldModifiedAmount);
+    }
+
+    public boolean fieldNameIsVisible() {
+        return Events.isVisibleWebElement(fieldName);
+    }
+
+    public boolean selectorCategoryIsVisible() {
+        return Events.isVisibleWebElement(incomeCategorySelectField);
+    }
+
+    public boolean fieldAmountIsVisible() {
+        return Events.isVisibleWebElement(fieldAmount);
+    }
+
+    public boolean datePickerIsVisible() {
+        return Events.isVisibleWebElement(fieldDate);
     }
 
 }

@@ -1,5 +1,6 @@
 package test_definitions;
 
+import cucumber.api.PendingException;
 import cucumber.api.Transform;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -10,7 +11,9 @@ import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import uitesting.upb.org.handlecucumber.StringListTransformer;
 import uitesting.upb.org.handlewebsite.LoadPage;
+import uitesting.upb.org.managefile.PropertyAccessor;
 import uitesting.upb.org.managepage.wallet.*;
+import uitesting.upb.org.webdrivermanager.DriverManager;
 
 
 public class WalletStepdefs {
@@ -285,24 +288,14 @@ public class WalletStepdefs {
         navBar.clickHomeButton();
     }
 
-    @Then("^'Income' button is visible on 'Account Main Menu'$")
-    public void incomeButtonIsVisibleOnAccountMainMenu() {
-        Assert.assertTrue(accountMainMenu.incomeButtonIsVisible());
-    }
-
-    @And("^'Expenses' button is visible on 'Account Main Menu'$")
-    public void expensesButtonIsVisibleOnAccountMainMenu() {
-        Assert.assertTrue(accountMainMenu.expensesButtonIsVisible());
-    }
-
-    @And("^'Transfer' button is visible on 'Account Main Menu'$")
-    public void transferButtonIsVisibleOnAccountMainMenu() {
-        Assert.assertTrue(accountMainMenu.transferButtonIsVisible());
-    }
-
-    @And("^'Report' button is visible on 'Account Main Menu'$")
-    public void reportButtonIsVisibleOnAccountMainMenu() {
-        Assert.assertTrue(accountMainMenu.reportButtonIsVisible());
+    @Then("^'Income', 'Expenses', 'Transfer', 'Report' buttons are visible on 'Account Main Menu'$")
+    public void incomeExpensesTransferReportButtonsAreVisibleOnAccountMainMenu() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(accountMainMenu.incomeButtonIsVisible());
+        softAssert.assertTrue(accountMainMenu.expensesButtonIsVisible());
+        softAssert.assertTrue(accountMainMenu.transferButtonIsVisible());
+        softAssert.assertTrue(accountMainMenu.reportButtonIsVisible());
+        softAssert.assertAll();
     }
 
     //TransferFeature
@@ -488,7 +481,6 @@ public class WalletStepdefs {
         }
 
 
-
     @And("^fill \"([^\"]*)\" input on 'IncomeExpenses Page'$")
     public void fillInput(String arg0) throws Throwable {
         incomeExpensesView.fillFieldName(arg0);
@@ -547,6 +539,26 @@ public class WalletStepdefs {
     public void verifyRegisteredCategoryMessageOnIncomeExpensesPage() {
         incomeExpensesView.createdCategoryMessageIsVisible();
     }
+
+    @Then("^field 'name', selector 'category', field 'amount', date picker 'dateSpace' are visible on 'Income Expenses View'$")
+    public void fieldNameSelectorCategoryFieldAmountDatePickerDateSpaceAreVisibleOnIncomeExpensesView() {
+        SoftAssert softAssert = new SoftAssert();
+        softAssert.assertTrue(incomeExpensesView.fieldNameIsVisible());
+        softAssert.assertTrue(incomeExpensesView.selectorCategoryIsVisible());
+        softAssert.assertTrue(incomeExpensesView.fieldAmountIsVisible());
+        softAssert.assertTrue(incomeExpensesView.datePickerIsVisible());
+        softAssert.assertAll();
+    }
+
+    @And("^go to \"([^\"]*)\" URL in the browser$")
+    public void goToURLInTheBrowser(String url) {
+        DriverManager.getInstance().getWebDriver().navigate().to(PropertyAccessor.getInstance().getBaseURL() + url);
+        accountMainMenu = new AccountMainMenu();
+    }
+
+    @Then("^can not enter to main menu of the general account$")
+    public void canNotEnterToMainMenuOfTheGeneralAccount() {
+        Assert.assertFalse(accountMainMenu.incomeButtonIsVisible());
+    }
+
 }
-
-

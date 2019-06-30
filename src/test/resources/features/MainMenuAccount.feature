@@ -7,7 +7,4 @@ Feature: Account main menu
     And click "A new account" button on 'Account Manager'
 
   Scenario: Account main menu buttons are visible
-    Then 'Income' button is visible on 'Account Main Menu'
-    And 'Expenses' button is visible on 'Account Main Menu'
-    And 'Transfer' button is visible on 'Account Main Menu'
-    And 'Report' button is visible on 'Account Main Menu'
+    Then 'Income', 'Expenses', 'Transfer', 'Report' buttons are visible on 'Account Main Menu'

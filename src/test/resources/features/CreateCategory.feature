@@ -10,4 +10,3 @@ Feature: Register a Category
       Then fill category "Test Category" input on 'IncomeExpenses Page'
       And click 'Register Category' button on 'IncomeExpenses Page'
       And verify 'Registered Category' message on 'IncomeExpenses Page'
-
