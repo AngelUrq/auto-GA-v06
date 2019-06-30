@@ -1,4 +1,4 @@
-package test_definitions;
+package uitesting.upb.org.test_definitions;
 
 import cucumber.api.PendingException;
 import cucumber.api.Transform;
@@ -559,6 +559,11 @@ public class WalletStepdefs {
     @Then("^can not enter to main menu of the general account$")
     public void canNotEnterToMainMenuOfTheGeneralAccount() {
         Assert.assertFalse(accountMainMenu.incomeButtonIsVisible());
+    }
+
+    @Then("^'Income' button is visible on 'Account Main Menu'$")
+    public void incomeButtonIsVisibleOnAccountMainMenu() {
+        Assert.assertTrue(accountMainMenu.incomeButtonIsVisible());
     }
 
 }
