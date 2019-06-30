@@ -3,12 +3,7 @@ import net.masterthought.cucumber.Configuration
 
 import net.masterthought.cucumber.ReportBuilder
 
-<<<<<<< HEAD
 apply plugin: 'java'
-=======
-
-apply plugin :'java'
->>>>>>> 528e7227fa9e062a13df4cd8c6f8ebb4c266ff0a
 
 group 'gestioncalidad'
 version '1.0.1'
@@ -20,12 +15,6 @@ repositories {
     mavenCentral()
 }
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 528e7227fa9e062a13df4cd8c6f8ebb4c266ff0a
 buildscript{
     repositories{
         jcenter()
@@ -38,17 +27,8 @@ buildscript{
 }
 
 
-<<<<<<< HEAD
 dependencies {
    // testCompile group: 'junit', name: 'junit', version: '4.12'
-=======
-
-dependencies {
-    //testCompile group: 'junit', name: 'junit', version: '4.12'
-
-    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
-
->>>>>>> 528e7227fa9e062a13df4cd8c6f8ebb4c266ff0a
 
     // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
@@ -164,18 +144,5 @@ def generateReport(String pathCucumber, String pathReport){
     reportBuilder.generateReports()
 }
 
-task tarea1{
-    println 'tarea 1'
-}
-
-task tarea2(dependsOn: tarea1) {
-    doLast {
-        println 'tarea 2'
-        }
-    }
-
-    task tarea3(dependsOn: tarea2) {
-        println 'tarea 3'
-    }
 
 

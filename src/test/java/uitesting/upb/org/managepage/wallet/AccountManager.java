@@ -73,12 +73,6 @@ public class AccountManager extends BasePage {
         Events.click(addAccountButton);
     }
 
-    public GeneralReports clickGeneralAccountButton() {
-        Events.click(generalAccountButton);
-
-        return new GeneralReports();
-    }
-
     public AccountMainMenu selectAccount(String accountName) {
         WebElement newAccountButton = webDriver.findElement(By.id(accountName));
         Events.click(newAccountButton);
@@ -97,5 +91,10 @@ public class AccountManager extends BasePage {
 
     public boolean addAccountButtonIsVisible() {
         return Events.isVisibleWebElement(addAccountButton);
+    }
+
+    public ReportPage clickGeneralButton(){
+        Events.click(generalAccountButton);
+        return new ReportPage();
     }
 }

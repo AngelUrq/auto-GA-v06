@@ -25,6 +25,15 @@ public class ReportPage extends BasePage {
     @FindBy(id = "reportType")
     private WebElement reportTypeComboBox;
 
+    @FindBy(className = "text-center")
+    private WebElement headerTitle;
+
+    @FindBy(id = "dateError")
+    private WebElement errorMessage;
+
+    @FindBy(id="reportTable")
+    private WebElement reportTable;
+
     public ReportPage() {
         super();
     }
@@ -52,7 +61,15 @@ public class ReportPage extends BasePage {
     public boolean endDateFieldIsVisible(){
         return Events.isVisibleWebElement(fieldEndDate);
     }
-    public boolean reportTypeComboBoxIsVisible(){
-        return Events.isVisibleWebElement(reportTypeComboBox);
+    public boolean titleIsTheExpected(String expectedTitle){
+        System.out.println(headerTitle.getText());
+        boolean res = headerTitle.getText().equals(expectedTitle);
+        return res;
+    }
+    public boolean errorMessageIsVisible(){
+        return Events.isVisibleWebElement(errorMessage);
+    }
+    public boolean reportTableIsVisible(){
+        return Events.isVisibleWebElement(reportTable);
     }
 }

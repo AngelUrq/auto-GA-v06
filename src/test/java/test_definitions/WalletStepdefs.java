@@ -12,8 +12,6 @@ import uitesting.upb.org.handlecucumber.StringListTransformer;
 import uitesting.upb.org.handlewebsite.LoadPage;
 import uitesting.upb.org.managepage.wallet.*;
 
-import java.util.List;
-
 public class WalletStepdefs {
 
     private final static String EXAMPLE_ACCOUNT_NAME = "My new account";
@@ -22,15 +20,10 @@ public class WalletStepdefs {
     private AccountCreator accountCreator;
     private NavBar navBar;
     private AccountSettings accountSettings;
-
     private ReportsPage reportsPage;
     private ReportTable reportTable;
-
     private AccountMainMenu accountMainMenu;
-
     private IncomeExpensesView incomeExpensesView;
-
-    private GeneralReports generalReports;
     private TransferPage transferPage;
     private ReportPage reportPage;
 
@@ -61,16 +54,6 @@ public class WalletStepdefs {
         boolean check = accountManager.newAccountButtonIsVisible(accountName);
 
         Assert.assertTrue(check);
-    }
-
-    @And("^click 'General' account button on 'Account Manager'$")
-    public void clickGeneralAccountButtonOnAccountManager() {
-        generalReports = accountManager.clickGeneralAccountButton();
-    }
-
-    @Then("^title is visible on 'General Reports'$")
-    public void titleIsVisibleOnGeneralReports() {
-        Assert.assertTrue(generalReports.titleIsVisible());
     }
 
     @And("^click 'Income' button$")
@@ -152,8 +135,6 @@ public class WalletStepdefs {
     public void clickChangeNameButtonInAccountSettings() {
         accountSettings.clickChangeNameButton();
         Assert.assertFalse(accountSettings.isValidAccountEmptyName());
-
-
     }
 
     @Then("^'Add' button is visible on 'Account Creator'$")
@@ -386,6 +367,20 @@ public class WalletStepdefs {
         reportPage.selectCategoryReport();
     }
 
+    @And("^check page title is \"([^\"]*)\"$")
+    public void checkPageTitleIs(String arg0) throws Throwable {
+        Assert.assertTrue(reportPage.titleIsTheExpected(arg0));
+    }
+
+    @And("^error message is visible$")
+    public void errorMessageIsVisible() {
+        Assert.assertTrue(reportPage.errorMessageIsVisible());
+    }
+
+
+
+
+
     @When("^'Navbar' is loaded in 'Income' page$")
     public void navbarIsLoadedInIncomePage() {
         navBar = new NavBar();
@@ -547,6 +542,21 @@ public class WalletStepdefs {
     @And("^verify 'Registered Category' message on 'IncomeExpenses Page'$")
     public void verifyRegisteredCategoryMessageOnIncomeExpensesPage() {
         incomeExpensesView.createdCategoryMessageIsVisible();
+    }
+
+    @And("^click exit button$")
+    public void clickExitButton() {
+        accountManager = accountMainMenu.clickExitButton();
+    }
+
+    @And("^click 'General' account button$")
+    public void clickGeneralAccountButton() {
+        reportPage = accountManager.clickGeneralButton();
+    }
+
+    @And("^report table is visible$")
+    public void reportTableIsVisible() {
+        Assert.assertTrue(reportPage.reportTableIsVisible());
     }
 }
 

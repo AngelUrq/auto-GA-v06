@@ -19,6 +19,9 @@ public class AccountMainMenu extends BasePage {
     @FindBy(id = "Report")
     private WebElement reportButton;
 
+    @FindBy(id = "exit")
+    private WebElement exitButton;
+
     public AccountMainMenu() {
         super();
     }
@@ -65,6 +68,11 @@ public class AccountMainMenu extends BasePage {
     public ReportPage clickReportButton(){
         Events.click(reportButton);
         return new ReportPage();
+    }
+
+    public AccountManager clickExitButton(){
+        Events.click(exitButton);
+        return new AccountManager();
     }
 
 }
