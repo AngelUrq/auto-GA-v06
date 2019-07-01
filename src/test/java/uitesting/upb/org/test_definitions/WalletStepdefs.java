@@ -25,7 +25,7 @@ public class WalletStepdefs {
     private NavBar navBar;
     private AccountSettings accountSettings;
 
-    private ReportsPage reportsPage;
+    private ReportPage reportsPage;
     private ReportTable reportTable;
 
     private AccountMainMenu accountMainMenu;
@@ -35,7 +35,7 @@ public class WalletStepdefs {
     private GeneralReports generalReports;
     private TransferPage transferPage;
     private ReportPage reportPage;
-
+    private ReportPage reportePage;
     private int lengthOfAccountListBefore;
 
     @Given("^Account manager is loaded$")
@@ -240,22 +240,22 @@ public class WalletStepdefs {
 
     @Then("^Click 'Report' button in 'Account Main Menu' Page$")
     public void clickReportButtonInAccountMainMenuPage() {
-        reportPage = accountMainMenu.clickReportButton();
+        reportePage = accountMainMenu.clickReportButton();
     }
 
     @And("^Click 'Report Type' Selector in 'Report' Page$")
     public void clickReportTypeSelectorInReportPage() {
-        reportsPage.clickTypeSelector();
+        reportePage.clickTypeSelector();
     }
 
     @And("^Click 'By category' Type in 'Report Type Selector' in 'Report' Page$")
     public void clickByCategoryTypeInReportTypeSelectorInReportPage() {
-        reportsPage.clickCategoryType();
+        reportePage.clickCategoryType();
     }
 
     @Then("^Click 'Show Report' Button in 'Report' Page$")
     public void clickShowReportButtonInReportPage() {
-        reportTable =  reportsPage.clickShowReportButton();
+        reportTable =  reportePage.clickShowReportButton();
     }
 
     @And("^Click 'Mateo' delete button in 'Report' table in 'Report' page$")

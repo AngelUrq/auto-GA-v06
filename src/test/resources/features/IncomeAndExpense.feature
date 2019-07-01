@@ -14,11 +14,11 @@ Feature: ELiminar ingresos y egresos
     #Añade un ingreso
 
     And click 'Income' button
-    And fill 'Enter Name' input
-    And fill 'Category' field
-    And fill 'Enter Amount' input
-    And fill 'mm/dd/yyyy' input
-    Then click 'Register Transaction' button
+    And fill "Mateo" input on 'IncomeExpenses Page'
+    And fill 'Category' field on 'Income Page'
+    And fill arbitrary "2000" amount on 'IncomeExpenses Page'
+    And fill arbitrary "02/05/2019" date on 'IncomeExpenses Page'
+    Then click 'Register Transaction' button on 'IncomeExpenses Page'
     When 'Navbar' is loaded in 'Income' page
     Then Click 'Personal Wallet' Button in 'NavBar' Page
 
@@ -26,11 +26,11 @@ Feature: ELiminar ingresos y egresos
 
     When 'Account Main Menu' Page is loaded
     Then click 'Expenses' button on 'Account Main Menu'
-    And fill 'Enter Name' input
+    And fill "Celular" input on 'IncomeExpenses Page'
     And select 'Category' field on 'Income Expenses View'
-    And fill 'Enter Amount' input
-    And fill 'mm/dd/yyyy' input
-    Then click 'Register Transaction' button
+    And fill arbitrary "1000" amount on 'IncomeExpenses Page'
+    And fill arbitrary "02/05/2019" date on 'IncomeExpenses Page'
+    Then click 'Register Transaction' button on 'IncomeExpenses Page'
     Then Click 'Personal Wallet' Button in 'NavBar' Page
 
   Scenario: Verify 'Delete' Button deletes income in 'Report Table' Page

@@ -25,6 +25,20 @@ public class ReportPage extends BasePage {
     @FindBy(id = "reportType")
     private WebElement reportTypeComboBox;
 
+    @FindBy(id = "reportType")
+    private WebElement typeSelector;
+
+
+
+
+    @FindBy(xpath = "//*[@value=\"category\"]")
+    private  WebElement categorySelector;
+
+
+    public void clickCategoryType(){
+        Events.click(categorySelector);
+    }
+
     public ReportPage() {
         super();
     }
@@ -40,8 +54,9 @@ public class ReportPage extends BasePage {
     public void fillEndDateReport(String endDate){
         Events.fillField(fieldEndDate,endDate);
     }
-    public void clickShowReportButton(){
+    public ReportTable clickShowReportButton(){
         Events.click(showReportButton);
+        return new ReportTable();
     }
     public boolean reportButtonIsVisible(){
         return Events.isVisibleWebElement(fieldStartDate);
@@ -54,5 +69,10 @@ public class ReportPage extends BasePage {
     }
     public boolean reportTypeComboBoxIsVisible(){
         return Events.isVisibleWebElement(reportTypeComboBox);
+    }
+
+
+    public void clickTypeSelector(){
+        Events.click(typeSelector);
     }
 }
